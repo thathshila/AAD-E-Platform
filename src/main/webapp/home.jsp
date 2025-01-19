@@ -105,6 +105,7 @@
         <p>Discover the best products from top brands at unbeatable prices!</p>
         <a href="#" class="btn btn-warning btn-lg">Shop Now</a>
     </div>
+
 </section>
 
 <!-- Featured Categories Section -->

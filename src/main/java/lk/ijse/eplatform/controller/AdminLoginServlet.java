@@ -12,6 +12,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+
+import jakarta.servlet.http.HttpSession;
 import org.mindrot.jbcrypt.BCrypt;
 
 @WebServlet(name = "AdminLoginServlet", value = "/admin-login")
@@ -40,6 +42,7 @@ public class AdminLoginServlet extends HttpServlet {
                         // Login successful
                         req.getSession().setAttribute("user", rs.getString("user_name")); // store user info in session
                         resp.sendRedirect("admin.jsp"); // redirect to dashboard
+
                     } else {
                         // Incorrect password
                         req.setAttribute("error", "Invalid credentials. Please try again.");
@@ -55,5 +58,7 @@ public class AdminLoginServlet extends HttpServlet {
             e.printStackTrace();
             resp.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Database error.");
         }
+
+
     }
 }

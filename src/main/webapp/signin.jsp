@@ -73,7 +73,8 @@
 <body>
 <div class="form-container">
     <h2 class="form-title">Sign in</h2>
-    <form action="home.jsp">
+<%--    <form action="home.jsp">--%>
+    <form action="home.jsp" >
         <!-- Email or Phone Field -->
         <div class="mb-3">
             <label for="email" class="form-label">Email or mobile phone number</label>
@@ -87,9 +88,6 @@
 
         <!-- Submit Button -->
         <button type="submit" class="btn btn-yellow w-100">Sign in</button>
-
-
-
     </form>
 
     <!-- Create Account -->

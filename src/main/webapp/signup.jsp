@@ -84,9 +84,9 @@
             <label for="repassword" class="form-label">Re-enter password</label>
             <input type="password" class="form-control" id="repassword" placeholder="Re-enter your password" required>
         </div>
-
+<form action="home.jsp">
         <!-- Submit Button -->
-        <button type="submit" class="btn btn-yellow w-100">register</button>
+        <button type="submit" class="btn btn-yellow w-100">register</button></form>
     </form>
 
     <p class="form-note">
