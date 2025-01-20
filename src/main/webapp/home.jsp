@@ -239,9 +239,9 @@
                 <!-- Card Body -->
                 <div class="card-body text-center">
                     <!-- Title -->
-                    <h5 class="card-title fw-bold">Toys</h5>
+                    <h5 class="card-title fw-bold">kitchen</h5>
                     <!-- Buttons -->
-                    <form action="toy.jsp" class="mb-2">
+                    <form action="kitchen.jsp" class="mb-2">
                         <button class="btn btn-warning text-dark fw-semibold w-100">Shop Now</button>
                     </form>
                     <form action="cart.jsp">

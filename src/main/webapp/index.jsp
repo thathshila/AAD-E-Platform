@@ -105,7 +105,7 @@
                     <a class="nav-link" href="#">Categories</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="cart.jsp">Cart <span class="badge bg-primary">0</span></a>
+                    <a class="nav-link" href="cart.jsp">Cart <span class="badge bg-primary"></span></a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="signin.jsp">Login</a>
