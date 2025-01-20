@@ -1,63 +1,3 @@
-//package lk.ijse.eplatform.controller;
-//
-//import jakarta.annotation.Resource;
-//import jakarta.servlet.ServletException;
-//import jakarta.servlet.annotation.WebServlet;
-//import jakarta.servlet.http.HttpServlet;
-//import jakarta.servlet.http.HttpServletRequest;
-//import jakarta.servlet.http.HttpServletResponse;
-//import lk.ijse.eplatform.bo.custom.ProductBO;
-//import lk.ijse.eplatform.dto.ProductDTO;
-//
-//import lk.ijse.eplatform.bo.BoFactory;
-//import javax.sql.DataSource;
-//import java.io.IOException;
-//import java.sql.Connection;
-//
-//@WebServlet(name = "ProductServlet",value = "/product-servlet")
-//public class ProductServlet extends HttpServlet {
-//    @Resource(name = "java:comp/env/jdbc/pool")
-//    private DataSource dataSource;
-//    ProductBO productBO = (ProductBO) BoFactory.getBoFactory().getBoType(BoFactory.BoType.PRODUCT);
-//    @Override
-//    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-//        String action = req.getParameter("action");
-//
-//        try {
-//            Connection conn = dataSource.getConnection();
-//            if ("save".equalsIgnoreCase(action)) {
-//                String name = req.getParameter("productName");
-//                String description = req.getParameter("productDescription");
-//                double price = Double.parseDouble(req.getParameter("productPrice"));
-//                int quantity = Integer.parseInt(req.getParameter("productQuantity"));
-//
-//                ProductDTO productDTO = new ProductDTO(name, description, price, quantity);
-//                productBO.saveProduct(productDTO);
-//
-//                resp.sendRedirect("success.jsp");
-//            } else if ("update".equalsIgnoreCase(action)) {
-//                int id = Integer.parseInt(req.getParameter("productId"));
-//                String name = req.getParameter("productName");
-//                String description = req.getParameter("productDescription");
-//                double price = Double.parseDouble(req.getParameter("productPrice"));
-//                int quantity = Integer.parseInt(req.getParameter("productQuantity"));
-//
-//                ProductDTO productDTO = new ProductDTO(id, name, description, price, quantity);
-//                productBO.updateProduct(productDTO);
-//
-//                resp.sendRedirect("success.jsp");
-//            } else if ("delete".equalsIgnoreCase(action)) {
-//                int id = Integer.parseInt(req.getParameter("productId"));
-//                productBO.deleteProduct(id);
-//
-//                resp.sendRedirect("success.jsp");
-//            }
-//        } catch (Exception e) {
-//            throw new ServletException("Error processing product action", e);
-//        }
-//    }
-//    }
-//
 package lk.ijse.eplatform.controller;
 
 import jakarta.annotation.Resource;
@@ -66,12 +6,24 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import lk.ijse.eplatform.bo.custom.ProductBO;
-import lk.ijse.eplatform.dto.ProductDTO;
+import jakarta.servlet.http.Part;
 import lk.ijse.eplatform.bo.BoFactory;
+import lk.ijse.eplatform.bo.custom.ProductBO;
+import lk.ijse.eplatform.dto.CategoryDTO;
+import lk.ijse.eplatform.dto.ProductDTO;
 
 import javax.sql.DataSource;
+import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 @WebServlet(name = "ProductServlet", value = "/product-servlet")
 public class ProductServlet extends HttpServlet {
@@ -82,46 +34,41 @@ public class ProductServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String action = req.getParameter("action");
-        System.out.println("action: " + action);
-        try {
-            // Obtain ProductBO instance
-            ProductBO productBO = (ProductBO) BoFactory.getBoFactory().getBoType(BoFactory.BoType.PRODUCT, dataSource);
 
-            if ("save".equalsIgnoreCase(action)) {
-                System.out.println("done");
-               // int productId = Integer.parseInt(req.getParameter("product_id"));
-                String name = req.getParameter("product_name");
-                String description = req.getParameter("product_description");
-                double price = Double.parseDouble(req.getParameter("product_price"));
-                int quantity = Integer.parseInt(req.getParameter("product_quantity"));
-                int category_id = Integer.parseInt(req.getParameter("category_id"));
+        if ("save".equalsIgnoreCase(action)) {
+            String name = req.getParameter("product_name");
+            String description = req.getParameter("product_description");
+            double price = Double.parseDouble(req.getParameter("product_price"));
+            int quantity = Integer.parseInt(req.getParameter("product_quantity"));
+            int categoryId = Integer.parseInt(req.getParameter("category_id"));
+            System.out.println("name: " + name);
+            System.out.println("description: " + description);
+            System.out.println("price: " + price);
+            System.out.println("quantity: " + quantity);
+            System.out.println("categoryId: " + categoryId);
 
-                ProductDTO productDTO = new ProductDTO(null,name, description, price, quantity,category_id);
-                System.out.println("productDTO: " + productDTO);
-                productBO.saveProduct(productDTO, dataSource); // Pass DataSource
-
-                resp.sendRedirect("product-list.jsp");
-            } else if ("update".equalsIgnoreCase(action)) {
-             //   int id = Integer.parseInt(req.getParameter("productId"));
-                String name = req.getParameter("productName");
-                String description = req.getParameter("productDescription");
-                double price = Double.parseDouble(req.getParameter("productPrice"));
-                int quantity = Integer.parseInt(req.getParameter("productQuantity"));
-                int category_id = Integer.parseInt(req.getParameter("productCategoryId"));
-
-                ProductDTO productDTO = new ProductDTO( null,name, description, price, quantity,category_id);
-                productBO.updateProduct(productDTO, dataSource); // Pass DataSource
-
-                resp.sendRedirect("success.jsp");
-            } else if ("delete".equalsIgnoreCase(action)) {
-                int id = Integer.parseInt(req.getParameter("productId"));
-                productBO.deleteProduct(id, dataSource); // Pass DataSource
-
-                resp.sendRedirect("success.jsp");
+            // Handle file upload
+            Part imagePart = req.getPart("image_path");
+            String fileName = Paths.get(imagePart.getSubmittedFileName()).getFileName().toString();
+            String imagePath = "uploads/" + fileName;
+            File uploadsDir = new File(getServletContext().getRealPath("/uploads"));
+            if (!uploadsDir.exists()) {
+                uploadsDir.mkdirs();
             }
-        } catch (Exception e) {
-            throw new ServletException("Error processing product action", e);
+            File imageFile = new File(uploadsDir, fileName);
+            try (InputStream input = imagePart.getInputStream()) {
+                Files.copy(input, imageFile.toPath());
+            }
+
+            ProductDTO product = new ProductDTO(1, name, description, price, quantity, categoryId, imagePath);
+
+            // Pass the DataSource to BoFactory
+            ProductBO productBO = (ProductBO) BoFactory.getBoFactory(dataSource).getBoType(BoFactory.BoType.PRODUCT);
+
+            // Call the saveProduct method
+            productBO.saveProduct(product, dataSource);
+
+            resp.sendRedirect("admin.jsp");
         }
     }
 }
-

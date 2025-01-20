@@ -21,6 +21,9 @@ public class Product {
     private double price;
     private int quantity;
     private int categoryId;
+    private String image_path;
+
+
 //    @Id
 //    @GeneratedValue(strategy = GenerationType.IDENTITY)
 //    private int productId;

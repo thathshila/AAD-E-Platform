@@ -1,46 +1,13 @@
-//package lk.ijse.eplatform.dao;
-//
-//import lk.ijse.eplatform.dao.custom.impl.ProductDAOImpl;
-//
-//
-//
-//public class DaoFactory {
-//    private static DaoFactory daoFactory;
-//
-//    private DaoFactory() {
-//    }
-//
-//
-//    public static DaoFactory getDaoFactory() {
-//        if (daoFactory == null) {
-//            daoFactory = new DaoFactory();
-//        }
-//        return daoFactory;
-//    }
-//
-//    public enum DaoType {
-//        PRODUCT
-//    }
-//
-//    // Updated method to use generics for type safety
-//    public SuperDAO getDaoType(DaoType daoType) {
-//        switch (daoType) {
-//            case PRODUCT:
-//                return  new ProductDAOImpl();
-//            default:
-//                return null;
-//        }
-//    }
-//}
+
 package lk.ijse.eplatform.dao;
 
 import lk.ijse.eplatform.dao.custom.impl.ProductDAOImpl;
-
 import javax.sql.DataSource;
 
 public class DaoFactory {
     private static DaoFactory daoFactory;
-    private DataSource dataSource;
+
+    private final DataSource dataSource;
 
     private DaoFactory(DataSource dataSource) {
         this.dataSource = dataSource;
@@ -60,7 +27,7 @@ public class DaoFactory {
     public SuperDAO getDaoType(DaoType daoType) {
         switch (daoType) {
             case PRODUCT:
-                return new ProductDAOImpl(dataSource);
+                return new ProductDAOImpl(dataSource); // Pass the DataSource
             default:
                 return null;
         }

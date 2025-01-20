@@ -14,8 +14,6 @@ public class ProductDTO {
     private double productPrice;
     private int productQuantity;
     private int category_id;
-
-    public ProductDTO(Integer o, String name, String description, double price, int quantity, int categoryId) {
-    }
+    private String image_path;
 }
 
