@@ -1,8 +1,8 @@
 <%--
   Created by IntelliJ IDEA.
   User: Thathshila
-  Date: 1/19/2025
-  Time: 8:20 PM
+  Date: 1/20/2025
+  Time: 6:25 PM
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -11,87 +11,104 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My E-Commerce Platform</title>
-    <!-- Bootstrap CSS -->
+    <title>E-Commerce Platform</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
-            font-family: 'Arial', sans-serif;
-            background-color: #ffffff;
+            font-family: Arial, sans-serif;
         }
-        .navbar {
-            background-color: #343a40;
-        }
-        .navbar-brand, .nav-link {
-            color: white !important;
-        }
-        .navbar-toggler-icon {
-            background-color: white;
-        }
-        .hero-section {
-            background-image: url('https://via.placeholder.com/1920x600'); /* Placeholder image */
-            background-size: cover;
-            background-position: center;
-            height: 60vh;
-            color: #4b8edd;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-        }
-        .hero-section h1 {
-            font-size: 3rem;
+        .navbar-brand {
+            font-size: 1.5rem;
             font-weight: bold;
         }
-        .category-card {
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            padding: 15px;
+        .hero {
+            background: url('https://via.placeholder.com/1920x600') no-repeat center center/cover; /* Replace with your image */
+            height: 30vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
             text-align: center;
-            background-color: #fff;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            color: white;
+            padding: 0 20px;
+            box-shadow: inset 0 0 100px rgba(0, 0, 0, 0.6); /* Adds a dark overlay effect */
+            position: relative;
+        }
+
+        /* Overlay for better text visibility */
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5); /* Adds a semi-transparent overlay */
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin: 0;
+            z-index: 2;
+            position: relative;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            font-weight: 300;
+            margin-top: 10px;
+            z-index: 2;
+            position: relative;
+        }
+        .hero-carousel img {
+            height: 400px;
+            object-fit: cover;
+        }
+        .category-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .category-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
         }
         .category-card img {
-            max-width: 100%;
-            border-radius: 5px;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+            object-fit: cover;
+            height: 150px;
         }
         .footer {
-            background-color: #343a40;
-            color: white;
+            background-color: #f8f9fa;
             padding: 20px 0;
-            text-align: center;
+        }
+        .footer .fa {
+            margin-right: 10px;
         }
     </style>
 </head>
 <body>
-
 <!-- Navbar -->
-<nav class="navbar navbar-expand-lg navbar-dark">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="#">My E-Commerce</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+        <a class="navbar-brand" href="#">E-Shop</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item">
-                    <a class="nav-link active" href="#">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Shop</a>
+                    <a class="nav-link" href="index.jsp">Home</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Categories</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Cart</a>
+                    <a class="nav-link" href="add-cart.jsp">ADD Cart <span class="badge bg-primary">0</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Login</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="view-profile.jsp">Profile</a>
+                    <a class="nav-link" href="signin.jsp">Login</a>
                 </li>
             </ul>
         </div>
@@ -99,93 +116,242 @@
 </nav>
 
 <!-- Hero Section -->
-<section class="hero-section">
-    <div>
-        <h1>Welcome to My E-Commerce Platform</h1>
-        <p>Discover the best products from top brands at unbeatable prices!</p>
-        <a href="#" class="btn btn-warning btn-lg">Shop Now</a>
-    </div>
+<div class="hero">
+    <h1>Welcome to E-Shop</h1>
+    <p>Discover amazing deals and products tailored for you</p>
 
-</section>
-
-<!-- Featured Categories Section -->
-<section class="container mt-5">
-    <h2 class="text-center mb-4">Featured Categories</h2>
-    <div class="row">
-        <div class="col-md-4 mb-4">
-            <div class="category-card">
-                <img src="https://via.placeholder.com/300x200" alt="Category 1">
-                <h4>Electronics</h4>
-            </div>
-        </div>
-        <div class="col-md-4 mb-4">
-            <div class="category-card">
-                <img src="https://via.placeholder.com/300x200" alt="Category 2">
-                <h4>Fashion</h4>
-            </div>
-        </div>
-        <div class="col-md-4 mb-4">
-            <div class="category-card">
-                <img src="https://via.placeholder.com/300x200" alt="Category 3">
-                <h4>Home & Kitchen</h4>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- Featured Products Section -->
-<section class="container mt-5">
-    <h2 class="text-center mb-4">Featured Products</h2>
-    <div class="row">
-        <div class="col-md-3 mb-4">
-            <div class="card">
-                <img src="https://via.placeholder.com/300x200" class="card-img-top" alt="Product 1">
-                <div class="card-body">
-                    <h5 class="card-title">Product Name</h5>
-                    <p class="card-text">$199.99</p>
-                    <a href="#" class="btn btn-warning">Add to Cart</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3 mb-4">
-            <div class="card">
-                <img src="https://via.placeholder.com/300x200" class="card-img-top" alt="Product 2">
-                <div class="card-body">
-                    <h5 class="card-title">Product Name</h5>
-                    <p class="card-text">$299.99</p>
-                    <a href="#" class="btn btn-warning">Add to Cart</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3 mb-4">
-            <div class="card">
-                <img src="https://via.placeholder.com/300x200" class="card-img-top" alt="Product 3">
-                <div class="card-body">
-                    <h5 class="card-title">Product Name</h5>
-                    <p class="card-text">$149.99</p>
-                    <a href="#" class="btn btn-warning">Add to Cart</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3 mb-4">
-            <div class="card">
-                <img src="https://via.placeholder.com/300x200" class="card-img-top" alt="Product 4">
-                <div class="card-body">
-                    <h5 class="card-title">Product Name</h5>
-                    <p class="card-text">$89.99</p>
-                    <a href="#" class="btn btn-warning">Add to Cart</a>
+    <!-- Search Bar -->
+    <div class="container my-4">
+        <div class="row">
+            <div class="col-md-8 mx-auto">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Search for products...">
+                    <button class="btn btn-primary" style="background-color: #f0c14b">Search</button>
                 </div>
             </div>
         </div>
     </div>
-</section>
+</div>
 
+<!-- Hero Carousel -->
+<div id="heroCarousel" class="carousel slide hero-carousel" data-bs-ride="carousel">
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <img src="images/04.webp" class="d-block w-100" alt="Slide 1">
+            <div class="carousel-caption d-none d-md-block">
+                <h5>Just in: Holiday Gifts</h5>
+                <p>Find the perfect gift for your loved ones.</p>
+            </div>
+        </div>
+        <div class="carousel-item">
+            <img src="images/02.jpg" class="d-block w-100" alt="Slide 2">
+            <div class="carousel-caption d-none d-md-block">
+                <h5>Shop the Latest Trends</h5>
+                <p>Explore our new collection.</p>
+            </div>
+        </div>
+        <div class="carousel-item">
+            <img src="images/03.jpg" class="d-block w-100" alt="Slide 3">
+            <div class="carousel-caption d-none d-md-block">
+                <h5>Exclusive Deals</h5>
+                <p>Save more with our special offers.</p>
+            </div>
+        </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    </button>
+</div>
+
+<!-- Categories Section -->
+<div class="container my-5">
+    <h2 class="text-center mb-4">Shop by Categories</h2>
+    <div class="row g-4">
+        <div class="col-md-3">
+            <div class="card category-card shadow-sm border-0">
+                <!-- Card Image -->
+                <img src="images/03.jpg" alt="Toys" class="card-img-top rounded-top" style="height: 200px; object-fit: cover;">
+
+                <!-- Card Body -->
+                <div class="card-body text-center">
+                    <!-- Title -->
+                    <h5 class="card-title fw-bold">Toys</h5>
+                    <!-- Buttons -->
+                    <form action="toy.jsp" class="mb-2">
+                        <button class="btn btn-warning text-dark fw-semibold w-100">Shop Now</button>
+                    </form>
+                    <form action="cart.jsp">
+                        <button class="btn btn-outline-warning fw-semibold w-100">Add to Cart</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col-md-3">
+            <div class="card category-card shadow-sm border-0">
+                <!-- Card Image -->
+                <img src="images/03.jpg" alt="Toys" class="card-img-top rounded-top" style="height: 200px; object-fit: cover;">
+
+                <!-- Card Body -->
+                <div class="card-body text-center">
+                    <!-- Title -->
+                    <h5 class="card-title fw-bold">Toys</h5>
+                    <!-- Buttons -->
+                    <form action="toy.jsp" class="mb-2">
+                        <button class="btn btn-warning text-dark fw-semibold w-100">Shop Now</button>
+                    </form>
+                    <form action="cart.jsp">
+                        <button class="btn btn-outline-warning fw-semibold w-100">Add to Cart</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card category-card shadow-sm border-0">
+                <!-- Card Image -->
+                <img src="images/03.jpg" alt="Toys" class="card-img-top rounded-top" style="height: 200px; object-fit: cover;">
+
+                <!-- Card Body -->
+                <div class="card-body text-center">
+                    <!-- Title -->
+                    <h5 class="card-title fw-bold">Toys</h5>
+                    <!-- Buttons -->
+                    <form action="toy.jsp" class="mb-2">
+                        <button class="btn btn-warning text-dark fw-semibold w-100">Shop Now</button>
+                    </form>
+                    <form action="cart.jsp">
+                        <button class="btn btn-outline-warning fw-semibold w-100">Add to Cart</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card category-card shadow-sm border-0">
+                <!-- Card Image -->
+                <img src="images/03.jpg" alt="Toys" class="card-img-top rounded-top" style="height: 200px; object-fit: cover;">
+
+                <!-- Card Body -->
+                <div class="card-body text-center">
+                    <!-- Title -->
+                    <h5 class="card-title fw-bold">Toys</h5>
+                    <!-- Buttons -->
+                    <form action="toy.jsp" class="mb-2">
+                        <button class="btn btn-warning text-dark fw-semibold w-100">Shop Now</button>
+                    </form>
+                    <form action="cart.jsp">
+                        <button class="btn btn-outline-warning fw-semibold w-100">Add to Cart</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Categories Section -->
+<div class="container my-5">
+    <h2 class="text-center mb-4">Shop by Categories</h2>
+    <div class="row g-4">
+        <div class="col-md-3">
+            <div class="card category-card shadow-sm border-0">
+                <!-- Card Image -->
+                <img src="images/03.jpg" alt="Toys" class="card-img-top rounded-top" style="height: 200px; object-fit: cover;">
+
+                <!-- Card Body -->
+                <div class="card-body text-center">
+                    <!-- Title -->
+                    <h5 class="card-title fw-bold">Toys</h5>
+                    <!-- Buttons -->
+                    <form action="toy.jsp" class="mb-2">
+                        <button class="btn btn-warning text-dark fw-semibold w-100">Shop Now</button>
+                    </form>
+                    <form action="cart.jsp">
+                        <button class="btn btn-outline-warning fw-semibold w-100">Add to Cart</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col-md-3">
+            <div class="card category-card shadow-sm border-0">
+                <!-- Card Image -->
+                <img src="images/03.jpg" alt="Toys" class="card-img-top rounded-top" style="height: 200px; object-fit: cover;">
+
+                <!-- Card Body -->
+                <div class="card-body text-center">
+                    <!-- Title -->
+                    <h5 class="card-title fw-bold">Toys</h5>
+                    <!-- Buttons -->
+                    <form action="toy.jsp" class="mb-2">
+                        <button class="btn btn-warning text-dark fw-semibold w-100">Shop Now</button>
+                    </form>
+                    <form action="cart.jsp">
+                        <button class="btn btn-outline-warning fw-semibold w-100">Add to Cart</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card category-card shadow-sm border-0">
+                <!-- Card Image -->
+                <img src="images/03.jpg" alt="Toys" class="card-img-top rounded-top" style="height: 200px; object-fit: cover;">
+
+                <!-- Card Body -->
+                <div class="card-body text-center">
+                    <!-- Title -->
+                    <h5 class="card-title fw-bold">Toys</h5>
+                    <!-- Buttons -->
+                    <form action="toy.jsp" class="mb-2">
+                        <button class="btn btn-warning text-dark fw-semibold w-100">Shop Now</button>
+                    </form>
+                    <form action="cart.jsp">
+                        <button class="btn btn-outline-warning fw-semibold w-100">Add to Cart</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card category-card shadow-sm border-0">
+                <!-- Card Image -->
+                <img src="images/03.jpg" alt="Toys" class="card-img-top rounded-top" style="height: 200px; object-fit: cover;">
+
+                <!-- Card Body -->
+                <div class="card-body text-center">
+                    <!-- Title -->
+                    <h5 class="card-title fw-bold">Toys</h5>
+                    <!-- Buttons -->
+                    <form action="toy.jsp" class="mb-2">
+                        <button class="btn btn-warning text-dark fw-semibold w-100">Shop Now</button>
+                    </form>
+                    <form action="cart.jsp">
+                        <button class="btn btn-outline-warning fw-semibold w-100">Add to Cart</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 <!-- Footer -->
-<footer class="footer">
-    <p>&copy; 2025 My E-Commerce Platform. All rights reserved.</p>
+<footer class="footer text-center">
+    <div class="container">
+        <p>Follow us on</p>
+        <div>
+            <a href="#"><i class="fa fa-facebook fa-lg"></i></a>
+            <a href="#"><i class="fa fa-twitter fa-lg"></i></a>
+            <a href="#"><i class="fa fa-instagram fa-lg"></i></a>
+            <a href="#"><i class="fa fa-linkedin fa-lg"></i></a>
+        </div>
+        <p class="mt-3">© 2025 E-Shop. All Rights Reserved.</p>
+    </div>
 </footer>
-
-<!-- Bootstrap JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

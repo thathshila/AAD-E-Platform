@@ -23,6 +23,6 @@ public class Category {
     @Column(length = 500)
     private String description;
 
-    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<Product> products = new ArrayList<>();
+//    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+//    private List<Product> products = new ArrayList<>();
 }

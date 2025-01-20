@@ -23,6 +23,10 @@ public class Product {
     private int categoryId;
     private String image_path;
 
+    public Product(int id, String name, double price, String imageUrl, int categoryId) {
+    }
+
+
 
 //    @Id
 //    @GeneratedValue(strategy = GenerationType.IDENTITY)
