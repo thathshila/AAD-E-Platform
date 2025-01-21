@@ -72,7 +72,7 @@ public class HomeServlet extends HttpServlet {
 //        req.setAttribute("products", products);
 //
 //        // Forward the request to the JSP page
-//        req.getRequestDispatcher("/home.jsp").forward(req, resp);
+//        req.getRequestDispatcher("/index.jsp").forward(req, resp);
 //    }
 //
 //}

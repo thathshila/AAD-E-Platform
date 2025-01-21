@@ -1,8 +1,9 @@
-<%--
+<%@ page import="lk.ijse.eplatform.dto.ProductDTO" %>
+<%@ page import="java.util.List" %><%--
   Created by IntelliJ IDEA.
   User: Thathshila
-  Date: 1/17/2025
-  Time: 11:51 PM
+  Date: 1/20/2025
+  Time: 6:25 PM
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -89,6 +90,34 @@
     </style>
 </head>
 <body>
+<%--<%--%>
+<%--    List<ProductDTO> dataList = (List<ProductDTO>) request.getAttribute("productList");--%>
+<%--    if (dataList != null && !dataList.isEmpty()) {--%>
+<%--        System.out.println(dataList);--%>
+<%--    }--%>
+<%--%>--%>
+<h1>Product List</h1>
+<div class="product-grid">
+    <%
+        List<ProductDTO> products = (List<ProductDTO>) request.getAttribute("productList");
+        if (products != null && !products.isEmpty()) {
+            for (ProductDTO product : products) {
+    %>
+    <div class="product-card">
+        <img src="<%= product.getImage_path() %>" alt="<%= product.getProductName() %>" class="product-image">
+        <h2><%= product.getProductName() %></h2>
+        <p><%= product.getProductDescription() %></p>
+        <p>Price: $<%= product.getProductPrice() %></p>
+        <p>Quantity: <%= product.getProductQuantity() %></p>
+        <a href="new-product-list?productName=<%= product.getProductName() %>" class="btn">View Details</a>
+    </div>
+    <%
+        }
+    } else {
+    %>
+    <p>No products available.</p>
+    <% } %>
+</div>
 <!-- Navbar -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container">
@@ -99,17 +128,23 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="admin.jsp">ADMIN</a>
+                    <a class="nav-link" href="index.jsp">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Categories</a>
+                    <a class="nav-link" href="new-product-list">Categories</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="cart.jsp">Cart <span class="badge bg-primary"></span></a>
+                    <a class="nav-link" href="add-cart.jsp">ADD Cart <span class="badge bg-primary">0</span></a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="signin.jsp">Login</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="admin.jsp">ADMIN</a>
+                </li>
+<%--                <li class="nav-item">--%>
+<%--                    <a class="nav-link" href="cart.jsp">Cart <span class="badge bg-primary"></span></a>--%>
+<%--                </li>--%>
             </ul>
         </div>
     </div>
@@ -120,38 +155,38 @@
     <h1>Welcome to E-Shop</h1>
     <p>Discover amazing deals and products tailored for you</p>
 
-<!-- Search Bar -->
-<div class="container my-4">
-    <div class="row">
-        <div class="col-md-8 mx-auto">
-            <div class="input-group">
-                <input type="text" class="form-control" placeholder="Search for products...">
-                <button class="btn btn-primary" style="background-color: #f0c14b">Search</button>
+    <!-- Search Bar -->
+    <div class="container my-4">
+        <div class="row">
+            <div class="col-md-8 mx-auto">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Search for products...">
+                    <button class="btn btn-primary" style="background-color: #f0c14b">Search</button>
+                </div>
             </div>
         </div>
     </div>
-</div>
 </div>
 
 <!-- Hero Carousel -->
 <div id="heroCarousel" class="carousel slide hero-carousel" data-bs-ride="carousel">
     <div class="carousel-inner">
         <div class="carousel-item active">
-            <img src="images/04.webp" class="d-block w-100" alt="Slide 1">
+            <img src="uploads/04.webp" class="d-block w-100" alt="Slide 1">
             <div class="carousel-caption d-none d-md-block">
                 <h5>Just in: Holiday Gifts</h5>
                 <p>Find the perfect gift for your loved ones.</p>
             </div>
         </div>
         <div class="carousel-item">
-            <img src="images/02.jpg" class="d-block w-100" alt="Slide 2">
+            <img src="uploads/02.jpg" class="d-block w-100" alt="Slide 2">
             <div class="carousel-caption d-none d-md-block">
                 <h5>Shop the Latest Trends</h5>
                 <p>Explore our new collection.</p>
             </div>
         </div>
         <div class="carousel-item">
-            <img src="images/03.jpg" class="d-block w-100" alt="Slide 3">
+            <img src="uploads/03.jpg" class="d-block w-100" alt="Slide 3">
             <div class="carousel-caption d-none d-md-block">
                 <h5>Exclusive Deals</h5>
                 <p>Save more with our special offers.</p>
@@ -173,7 +208,7 @@
         <div class="col-md-3">
             <div class="card category-card shadow-sm border-0">
                 <!-- Card Image -->
-                <img src="images/03.jpg" alt="Toys" class="card-img-top rounded-top" style="height: 200px; object-fit: cover;">
+                <img src="uploads/03.jpg" alt="Toys" class="card-img-top rounded-top" style="height: 200px; object-fit: cover;">
 
                 <!-- Card Body -->
                 <div class="card-body text-center">
@@ -194,7 +229,7 @@
         <div class="col-md-3">
             <div class="card category-card shadow-sm border-0">
                 <!-- Card Image -->
-                <img src="images/03.jpg" alt="Toys" class="card-img-top rounded-top" style="height: 200px; object-fit: cover;">
+                <img src="uploads/03.jpg" alt="Toys" class="card-img-top rounded-top" style="height: 200px; object-fit: cover;">
 
                 <!-- Card Body -->
                 <div class="card-body text-center">
@@ -214,7 +249,7 @@
         <div class="col-md-3">
             <div class="card category-card shadow-sm border-0">
                 <!-- Card Image -->
-                <img src="images/03.jpg" alt="Toys" class="card-img-top rounded-top" style="height: 200px; object-fit: cover;">
+                <img src="uploads/03.jpg" alt="Toys" class="card-img-top rounded-top" style="height: 200px; object-fit: cover;">
 
                 <!-- Card Body -->
                 <div class="card-body text-center">
@@ -234,14 +269,14 @@
         <div class="col-md-3">
             <div class="card category-card shadow-sm border-0">
                 <!-- Card Image -->
-                <img src="images/03.jpg" alt="Toys" class="card-img-top rounded-top" style="height: 200px; object-fit: cover;">
+                <img src="uploads/03.jpg" alt="Toys" class="card-img-top rounded-top" style="height: 200px; object-fit: cover;">
 
                 <!-- Card Body -->
                 <div class="card-body text-center">
                     <!-- Title -->
-                    <h5 class="card-title fw-bold">Toys</h5>
+                    <h5 class="card-title fw-bold">kitchen</h5>
                     <!-- Buttons -->
-                    <form action="toy.jsp" class="mb-2">
+                    <form action="kitchen.jsp" class="mb-2">
                         <button class="btn btn-warning text-dark fw-semibold w-100">Shop Now</button>
                     </form>
                     <form action="cart.jsp">
@@ -260,7 +295,7 @@
         <div class="col-md-3">
             <div class="card category-card shadow-sm border-0">
                 <!-- Card Image -->
-                <img src="images/03.jpg" alt="Toys" class="card-img-top rounded-top" style="height: 200px; object-fit: cover;">
+                <img src="uploads/03.jpg" alt="Toys" class="card-img-top rounded-top" style="height: 200px; object-fit: cover;">
 
                 <!-- Card Body -->
                 <div class="card-body text-center">
@@ -281,7 +316,7 @@
         <div class="col-md-3">
             <div class="card category-card shadow-sm border-0">
                 <!-- Card Image -->
-                <img src="images/03.jpg" alt="Toys" class="card-img-top rounded-top" style="height: 200px; object-fit: cover;">
+                <img src="uploads/03.jpg" alt="Toys" class="card-img-top rounded-top" style="height: 200px; object-fit: cover;">
 
                 <!-- Card Body -->
                 <div class="card-body text-center">
@@ -301,7 +336,7 @@
         <div class="col-md-3">
             <div class="card category-card shadow-sm border-0">
                 <!-- Card Image -->
-                <img src="images/03.jpg" alt="Toys" class="card-img-top rounded-top" style="height: 200px; object-fit: cover;">
+                <img src="uploads/03.jpg" alt="Toys" class="card-img-top rounded-top" style="height: 200px; object-fit: cover;">
 
                 <!-- Card Body -->
                 <div class="card-body text-center">
@@ -321,7 +356,7 @@
         <div class="col-md-3">
             <div class="card category-card shadow-sm border-0">
                 <!-- Card Image -->
-                <img src="images/03.jpg" alt="Toys" class="card-img-top rounded-top" style="height: 200px; object-fit: cover;">
+                <img src="uploads/03.jpg" alt="Toys" class="card-img-top rounded-top" style="height: 200px; object-fit: cover;">
 
                 <!-- Card Body -->
                 <div class="card-body text-center">
@@ -339,8 +374,19 @@
         </div>
     </div>
 </div>
-
+<!-- Footer -->
+<footer class="footer text-center">
+    <div class="container">
+        <p>Follow us on</p>
+        <div>
+            <a href="#"><i class="fa fa-facebook fa-lg"></i></a>
+            <a href="#"><i class="fa fa-twitter fa-lg"></i></a>
+            <a href="#"><i class="fa fa-instagram fa-lg"></i></a>
+            <a href="#"><i class="fa fa-linkedin fa-lg"></i></a>
+        </div>
+        <p class="mt-3">© 2025 E-Shop. All Rights Reserved.</p>
+    </div>
+</footer>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
-

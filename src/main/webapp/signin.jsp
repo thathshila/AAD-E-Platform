@@ -73,8 +73,8 @@
 <body>
 <div class="form-container">
     <h2 class="form-title">Sign in</h2>
-<%--    <form action="home.jsp">--%>
-    <form action="home.jsp" >
+<%--    <form action="index.jsp">--%>
+    <form action="index.jsp" >
         <!-- Email or Phone Field -->
         <div class="mb-3">
             <label for="email" class="form-label">Email or mobile phone number</label>
