@@ -1,12 +1,12 @@
-<%@ page import="lk.ijse.eplatform.dto.CategoryDTO" %>
-<%@ page import="java.util.List" %><%--
-  Created by IntelliJ IDEA.
-  User: Thathshila
-  Date: 1/19/2025
-  Time: 9:32 AM
-  To change this template use File | Settings | File Templates.
---%>
-<%--<%@ page contentType="text/html;charset=UTF-8" language="java" %>--%>
+<%--<%@ page import="lk.ijse.eplatform.dto.CategoryDTO" %>--%>
+<%--<%@ page import="java.util.List" %>&lt;%&ndash;--%>
+<%--  Created by IntelliJ IDEA.--%>
+<%--  User: Thathshila--%>
+<%--  Date: 1/19/2025--%>
+<%--  Time: 9:32 AM--%>
+<%--  To change this template use File | Settings | File Templates.--%>
+<%--&ndash;%&gt;--%>
+<%--&lt;%&ndash;<%@ page contentType="text/html;charset=UTF-8" language="java" %>&ndash;%&gt;--%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -57,41 +57,12 @@
             <label for="categoryId" class="form-label">Category Id</label>
             <input type="number" class="form-control" id="categoryId" name="categoryId" required>
         </div>
-        <%--        <div class="mb-3">--%>
-        <%--            <form action="category-name" method="get">--%>
-        <%--            <label for="categoryName" class="form-label">Category</label>--%>
-        <%--            <select class="form-select" id="categoryName" name="categoryName" required>--%>
-        <%--                <!-- Populate categories dynamically -->--%>
-        <%--                &lt;%&ndash;%>
-        <%--                    List<String> categories = (List<String>) request.getAttribute("categories");--%>
-
-        <%--                    // Print the categories for debugging--%>
-        <%--                    if (categories != null) {--%>
-        <%--                        System.out.println("Categories from JSP: " + categories);--%>
-        <%--                    } else {--%>
-        <%--                        System.out.println("Categories list is null");--%>
-        <%--                    }--%>
-
-        <%--                    if (categories != null && !categories.isEmpty()) {--%>
-        <%--                        for (String category : categories) {--%>
-        <%--                %>--%>
-        <%--                <option value="<%= category %>"><%= category %></option>--%>
-        <%--                &lt;%&ndash;%>
-        <%--                    }--%>
-        <%--                } else {--%>
-        <%--                %>--%>
-        <%--                <option value="">No categories available</option>--%>
-        <%--                &lt;%&ndash;%>
-        <%--                    }--%>
-        <%--                %>--%>
-        <%--            </select>--%>
-        <%--            </form>--%>
-        <%--        </div>--%>
         <div class="mb-3">
             <label for="productImage" class="form-label">Product Image</label>
             <input type="file" class="form-control" id="productImage" name="productImage" accept="image/*" required>
         </div>
         <button type="submit" name="action" value="save" class="btn btn-primary w-100">Add Product</button>
+    </form>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
