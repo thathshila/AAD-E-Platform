@@ -90,34 +90,7 @@
     </style>
 </head>
 <body>
-<%--<%--%>
-<%--    List<ProductDTO> dataList = (List<ProductDTO>) request.getAttribute("productList");--%>
-<%--    if (dataList != null && !dataList.isEmpty()) {--%>
-<%--        System.out.println(dataList);--%>
-<%--    }--%>
-<%--%>--%>
-<h1>Product List</h1>
-<div class="product-grid">
-    <%
-        List<ProductDTO> products = (List<ProductDTO>) request.getAttribute("productList");
-        if (products != null && !products.isEmpty()) {
-            for (ProductDTO product : products) {
-    %>
-    <div class="product-card">
-        <img src="<%= product.getImage_path() %>" alt="<%= product.getProductName() %>" class="product-image">
-        <h2><%= product.getProductName() %></h2>
-        <p><%= product.getProductDescription() %></p>
-        <p>Price: $<%= product.getProductPrice() %></p>
-        <p>Quantity: <%= product.getProductQuantity() %></p>
-        <a href="new-product-list?productName=<%= product.getProductName() %>" class="btn">View Details</a>
-    </div>
-    <%
-        }
-    } else {
-    %>
-    <p>No products available.</p>
-    <% } %>
-</div>
+
 <!-- Navbar -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container">
@@ -201,179 +174,55 @@
     </button>
 </div>
 
-<!-- Categories Section -->
-<div class="container my-5">
-    <h2 class="text-center mb-4">Shop by Categories</h2>
-    <div class="row g-4">
-        <div class="col-md-3">
-            <div class="card category-card shadow-sm border-0">
-                <!-- Card Image -->
-                <img src="uploads/03.jpg" alt="Toys" class="card-img-top rounded-top" style="height: 200px; object-fit: cover;">
+<%--<!-- Categories Section -->--%>
+<div class="container mt-5">
+    <h1 class="text-center mb-4">Our Products</h1>
 
-                <!-- Card Body -->
-                <div class="card-body text-center">
-                    <!-- Title -->
-                    <h5 class="card-title fw-bold">Toys</h5>
-                    <!-- Buttons -->
-                    <form action="toy.jsp" class="mb-2">
-                        <button class="btn btn-warning text-dark fw-semibold w-100">Shop Now</button>
-                    </form>
+    <%
+        // Fetch the product list passed from the servlet
+        List<ProductDTO> productList = (List<ProductDTO>) request.getAttribute("productList");
+        if (productList != null && !productList.isEmpty()) {
+    %>
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4">
+        <%
+            for (ProductDTO product : productList) {
+        %>
+        <div class="col">
+            <div class="card h-100">
+                <!-- Product Image -->
+                <img src="<%= product.getImage_path() %>" class="card-img-top" alt="<%= product.getProductName() %>" style="height: 200px; object-fit: cover;">
+
+                <div class="card-body">
+                    <!-- Product Name -->
+                    <h5 class="card-title"><%= product.getProductName() %></h5>
+
+                    <!-- Product Description -->
+                    <p class="card-text text-muted"><%= product.getProductDescription() %></p>
+
+                    <!-- Product Price -->
+                    <p class="fw-bold">Price: $<%= product.getProductPrice() %></p>
+
+                    <!-- Product Quantity -->
+                    <p>Available: <%= product.getProductQuantity() %> units</p>
+
+                    <!-- Action Button -->
                     <form action="cart.jsp">
-                        <button class="btn btn-outline-warning fw-semibold w-100">Add to Cart</button>
+                        <button type="submit" class="btn btn-danger">ADD TO CART</button>
                     </form>
                 </div>
             </div>
         </div>
-
-
-        <div class="col-md-3">
-            <div class="card category-card shadow-sm border-0">
-                <!-- Card Image -->
-                <img src="uploads/03.jpg" alt="Toys" class="card-img-top rounded-top" style="height: 200px; object-fit: cover;">
-
-                <!-- Card Body -->
-                <div class="card-body text-center">
-                    <!-- Title -->
-                    <h5 class="card-title fw-bold">Toys</h5>
-                    <!-- Buttons -->
-                    <form action="toy.jsp" class="mb-2">
-                        <button class="btn btn-warning text-dark fw-semibold w-100">Shop Now</button>
-                    </form>
-                    <form action="cart.jsp">
-                        <button class="btn btn-outline-warning fw-semibold w-100">Add to Cart</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-md-3">
-            <div class="card category-card shadow-sm border-0">
-                <!-- Card Image -->
-                <img src="uploads/03.jpg" alt="Toys" class="card-img-top rounded-top" style="height: 200px; object-fit: cover;">
-
-                <!-- Card Body -->
-                <div class="card-body text-center">
-                    <!-- Title -->
-                    <h5 class="card-title fw-bold">Toys</h5>
-                    <!-- Buttons -->
-                    <form action="toy.jsp" class="mb-2">
-                        <button class="btn btn-warning text-dark fw-semibold w-100">Shop Now</button>
-                    </form>
-                    <form action="cart.jsp">
-                        <button class="btn btn-outline-warning fw-semibold w-100">Add to Cart</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-md-3">
-            <div class="card category-card shadow-sm border-0">
-                <!-- Card Image -->
-                <img src="uploads/03.jpg" alt="Toys" class="card-img-top rounded-top" style="height: 200px; object-fit: cover;">
-
-                <!-- Card Body -->
-                <div class="card-body text-center">
-                    <!-- Title -->
-                    <h5 class="card-title fw-bold">kitchen</h5>
-                    <!-- Buttons -->
-                    <form action="kitchen.jsp" class="mb-2">
-                        <button class="btn btn-warning text-dark fw-semibold w-100">Shop Now</button>
-                    </form>
-                    <form action="cart.jsp">
-                        <button class="btn btn-outline-warning fw-semibold w-100">Add to Cart</button>
-                    </form>
-                </div>
-            </div>
-        </div>
+        <%
+            }
+        %>
     </div>
+    <% } else { %>
+    <div class="alert alert-warning text-center" role="alert">
+        No products available at the moment.
+    </div>
+    <% } %>
 </div>
 
-<!-- Categories Section -->
-<div class="container my-5">
-    <h2 class="text-center mb-4">Shop by Categories</h2>
-    <div class="row g-4">
-        <div class="col-md-3">
-            <div class="card category-card shadow-sm border-0">
-                <!-- Card Image -->
-                <img src="uploads/03.jpg" alt="Toys" class="card-img-top rounded-top" style="height: 200px; object-fit: cover;">
-
-                <!-- Card Body -->
-                <div class="card-body text-center">
-                    <!-- Title -->
-                    <h5 class="card-title fw-bold">Toys</h5>
-                    <!-- Buttons -->
-                    <form action="toy.jsp" class="mb-2">
-                        <button class="btn btn-warning text-dark fw-semibold w-100">Shop Now</button>
-                    </form>
-                    <form action="cart.jsp">
-                        <button class="btn btn-outline-warning fw-semibold w-100">Add to Cart</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-
-
-        <div class="col-md-3">
-            <div class="card category-card shadow-sm border-0">
-                <!-- Card Image -->
-                <img src="uploads/03.jpg" alt="Toys" class="card-img-top rounded-top" style="height: 200px; object-fit: cover;">
-
-                <!-- Card Body -->
-                <div class="card-body text-center">
-                    <!-- Title -->
-                    <h5 class="card-title fw-bold">Toys</h5>
-                    <!-- Buttons -->
-                    <form action="toy.jsp" class="mb-2">
-                        <button class="btn btn-warning text-dark fw-semibold w-100">Shop Now</button>
-                    </form>
-                    <form action="cart.jsp">
-                        <button class="btn btn-outline-warning fw-semibold w-100">Add to Cart</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-md-3">
-            <div class="card category-card shadow-sm border-0">
-                <!-- Card Image -->
-                <img src="uploads/03.jpg" alt="Toys" class="card-img-top rounded-top" style="height: 200px; object-fit: cover;">
-
-                <!-- Card Body -->
-                <div class="card-body text-center">
-                    <!-- Title -->
-                    <h5 class="card-title fw-bold">Toys</h5>
-                    <!-- Buttons -->
-                    <form action="toy.jsp" class="mb-2">
-                        <button class="btn btn-warning text-dark fw-semibold w-100">Shop Now</button>
-                    </form>
-                    <form action="cart.jsp">
-                        <button class="btn btn-outline-warning fw-semibold w-100">Add to Cart</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-md-3">
-            <div class="card category-card shadow-sm border-0">
-                <!-- Card Image -->
-                <img src="uploads/03.jpg" alt="Toys" class="card-img-top rounded-top" style="height: 200px; object-fit: cover;">
-
-                <!-- Card Body -->
-                <div class="card-body text-center">
-                    <!-- Title -->
-                    <h5 class="card-title fw-bold">Toys</h5>
-                    <!-- Buttons -->
-                    <form action="toy.jsp" class="mb-2">
-                        <button class="btn btn-warning text-dark fw-semibold w-100">Shop Now</button>
-                    </form>
-                    <form action="cart.jsp">
-                        <button class="btn btn-outline-warning fw-semibold w-100">Add to Cart</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
 <!-- Footer -->
 <footer class="footer text-center">
     <div class="container">
