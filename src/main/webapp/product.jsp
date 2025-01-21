@@ -1,4 +1,4 @@
-<%--<%@ page import="lk.ijse.eplatform.dto.CategoryDTO" %>--%>
+<%@ page import="java.util.List" %><%--<%@ page import="lk.ijse.eplatform.dto.CategoryDTO" %>--%>
 <%--<%@ page import="java.util.List" %>&lt;%&ndash;--%>
 <%--  Created by IntelliJ IDEA.--%>
 <%--  User: Thathshila--%>
@@ -36,6 +36,8 @@
 <body>
 <div class="container">
     <h1>Add Product</h1>
+    <a href="category-name" class="btn btn-primary w-100" role="button">Add New Product</a>
+
     <form action="product-new" method="post" enctype="multipart/form-data">
         <div class="mb-3">
             <label for="productName" class="form-label">Product Name</label>
@@ -54,8 +56,25 @@
             <input type="number" class="form-control" id="productQuantity" name="productQuantity" required>
         </div>
         <div class="mb-3">
-            <label for="categoryId" class="form-label">Category Id</label>
-            <input type="number" class="form-control" id="categoryId" name="categoryId" required>
+            <label for="categorySelect" class="form-label">Select Category ID</label>
+            <select class="form-select" id="categorySelect" name="category_id" required>
+                <option value="">Select Category</option>
+                <%
+                    // Fetch the list of category IDs from the request attribute
+                    List<Integer> categoryIds = (List<Integer>) request.getAttribute("categoryIds");
+                    if (categoryIds != null && !categoryIds.isEmpty()) {
+                        for (Integer categoryId : categoryIds) {
+                %>
+                <option value="<%= categoryId %>"><%= categoryId %></option>
+                <%
+                    }
+                } else {
+                %>
+                <option value="" disabled>No categories available</option>
+                <%
+                    }
+                %>
+            </select>
         </div>
         <div class="mb-3">
             <label for="productImage" class="form-label">Product Image</label>

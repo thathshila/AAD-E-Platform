@@ -35,10 +35,10 @@ public class CategoryName extends HttpServlet {
             }
 
             // Set the category IDs as a request attribute
-            req.setAttribute("categoryList", categoryIds);
+            req.setAttribute("categoryIds", categoryIds);
 
             // Forward the request to product-new.jsp
-            RequestDispatcher requestDispatcher = req.getRequestDispatcher("product-new.jsp");
+            RequestDispatcher requestDispatcher = req.getRequestDispatcher("product.jsp");
             requestDispatcher.forward(req, resp);
         } catch (SQLException e) {
             e.printStackTrace();
