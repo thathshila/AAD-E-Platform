@@ -34,6 +34,9 @@
     </style>
 </head>
 <body>
+<form action="admin.jsp">
+    <button type="submit" class="btn btn-danger">home</button>
+</form>
 <div class="container">
     <h1>Add Product</h1>
     <a href="category-name" class="btn btn-primary w-100" role="button">Add New Product</a>

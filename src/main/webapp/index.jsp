@@ -24,7 +24,7 @@
         }
         .hero {
             background: url('https://via.placeholder.com/1920x600') no-repeat center center/cover; /* Replace with your image */
-            height: 30vh;
+            height: 20vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -127,19 +127,19 @@
 <div class="hero">
     <h1>Welcome to E-Shop</h1>
     <p>Discover amazing deals and products tailored for you</p>
-
-    <!-- Search Bar -->
-    <div class="container my-4">
-        <div class="row">
-            <div class="col-md-8 mx-auto">
-                <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Search for products...">
-                    <button class="btn btn-primary" style="background-color: #f0c14b">Search</button>
-                </div>
+</div>
+<!-- Search Bar -->
+<div class="container my-4">
+    <div class="row">
+        <div class="col-md-8 mx-auto">
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="Search for products...">
+                <button class="btn btn-primary" style="background-color: #f0c14b">Search</button>
             </div>
         </div>
     </div>
 </div>
+    <a href="new-product-list" class="btn btn-primary w-100" style="background-color:#f0c14b" role="button">SHOP Now</a>
 
 <!-- Hero Carousel -->
 <div id="heroCarousel" class="carousel slide hero-carousel" data-bs-ride="carousel">
@@ -147,21 +147,21 @@
         <div class="carousel-item active">
             <img src="uploads/04.webp" class="d-block w-100" alt="Slide 1">
             <div class="carousel-caption d-none d-md-block">
-                <h5>Just in: Holiday Gifts</h5>
+                <h1 style="color: white">Just in: Holiday Gifts</h1>
                 <p>Find the perfect gift for your loved ones.</p>
             </div>
         </div>
         <div class="carousel-item">
             <img src="uploads/02.jpg" class="d-block w-100" alt="Slide 2">
             <div class="carousel-caption d-none d-md-block">
-                <h5>Shop the Latest Trends</h5>
+                <h1 style="color: white">Shop the Latest Trends</h1>
                 <p>Explore our new collection.</p>
             </div>
         </div>
         <div class="carousel-item">
             <img src="uploads/03.jpg" class="d-block w-100" alt="Slide 3">
             <div class="carousel-caption d-none d-md-block">
-                <h5>Exclusive Deals</h5>
+                <h1 style="color: white">Exclusive Deals</h1>
                 <p>Save more with our special offers.</p>
             </div>
         </div>

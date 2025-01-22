@@ -35,6 +35,9 @@
                 <li class="nav-item">
                     <a class="nav-link" href="user-list">Users</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="index.jsp">Home</a>
+                </li>
             </ul>
         </div>
     </div>
@@ -51,58 +54,7 @@
         </div>
     </div>
 </div>
-<a href="index.jsp">home</a>
-<h1>IMPLEMENT ADMIN DASHBOARD</h1>
-<!-- Filters and Categories -->
-<%--<div class="container">--%>
-<%--    <div class="row">--%>
-<%--        <!-- Filters Sidebar -->--%>
-<%--        <div class="col-md-3">--%>
-<%--            <h5>Filter By</h5>--%>
-<%--            <div class="mb-3">--%>
-<%--                <label for="priceRange" class="form-label">Price Range</label>--%>
-<%--                <input type="range" class="form-range" id="priceRange" min="0" max="1000" step="10">--%>
-<%--            </div>--%>
-<%--            <h6>Categories</h6>--%>
-<%--            <ul class="list-group">--%>
-<%--                <li class="list-group-item"><a href="#">Electronics</a></li>--%>
-<%--                <li class="list-group-item"><a href="#">Clothing</a></li>--%>
-<%--                <li class="list-group-item"><a href="#">Home Appliances</a></li>--%>
-<%--                <li class="list-group-item"><a href="#">Books</a></li>--%>
-<%--            </ul>--%>
-<%--        </div>--%>
 
-<%--        <!-- Products Section -->--%>
-<%--        <div class="col-md-9">--%>
-<%--            <h5>Products</h5>--%>
-<%--            <div class="row row-cols-1 row-cols-md-3 g-4">--%>
-<%--                <!-- Product Card -->--%>
-<%--                <div class="col">--%>
-<%--                    <div class="card h-100">--%>
-<%--                        <img src="https://via.placeholder.com/150" class="card-img-top" alt="Product Image">--%>
-<%--                        <div class="card-body">--%>
-<%--                            <h5 class="card-title">Product Name</h5>--%>
-<%--                            <p class="card-text">$99.99</p>--%>
-<%--                            <a href="#" class="btn btn-primary">Add to Cart</a>--%>
-<%--                        </div>--%>
-<%--                    </div>--%>
-<%--                </div>--%>
-<%--                <!-- Repeat Product Card -->--%>
-<%--                <div class="col">--%>
-<%--                    <div class="card h-100">--%>
-<%--                        <img src="https://via.placeholder.com/150" class="card-img-top" alt="Product Image">--%>
-<%--                        <div class="card-body">--%>
-<%--                            <h5 class="card-title">Another Product</h5>--%>
-<%--                            <p class="card-text">$49.99</p>--%>
-<%--                            <a href="#" class="btn btn-primary">Add to Cart</a>--%>
-<%--                        </div>--%>
-<%--                    </div>--%>
-<%--                </div>--%>
-<%--                <!-- Add more product cards as needed -->--%>
-<%--            </div>--%>
-<%--        </div>--%>
-<%--    </div>--%>
-<%--</div>--%>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
