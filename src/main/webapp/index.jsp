@@ -90,7 +90,6 @@
     </style>
 </head>
 <body>
-
 <!-- Navbar -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container">
@@ -106,9 +105,9 @@
                 <li class="nav-item">
                     <a class="nav-link" href="new-product-list">Categories</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="add-cart.jsp">ADD Cart <span class="badge bg-primary">0</span></a>
-                </li>
+<%--                <li class="nav-item">--%>
+<%--                    <a class="nav-link" href="add-cart.jsp">ADD Cart <span class="badge bg-primary">0</span></a>--%>
+<%--                </li>--%>
                 <li class="nav-item">
                     <a class="nav-link" href="signin.jsp">Login</a>
                 </li>
