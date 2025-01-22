@@ -132,9 +132,10 @@
                     <div class="card shadow-sm mb-4">
                         <img src="https://via.placeholder.com/350x150" class="card-img-top" alt="Reports">
                         <div class="card-body">
-                            <h5 class="card-title">Reports</h5>
-                            <p class="card-text">Analyze sales and performance with detailed reports.</p>
-                            <a href="#" class="btn btn-info">View Reports</a>
+                            <h5 class="card-title">Category</h5>
+                            <p class="card-text">View and manage all the category available in the store.</p>
+                            <a href="category.jsp" class="btn btn-info">Add Categories</a>
+                            <a href="category-list" class="btn btn-info">View Categories</a>
                         </div>
                     </div>
                 </div>

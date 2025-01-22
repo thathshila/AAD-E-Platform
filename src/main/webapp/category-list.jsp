@@ -1,13 +1,6 @@
 
 <%@ page import="java.util.List" %>
-<%@ page import="lk.ijse.eplatform.dto.CategoryDTO" %><%--
-  Created by IntelliJ IDEA.
-  User: Thathshila
-  Date: 1/16/2025
-  Time: 9:16 PM
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page import="lk.ijse.eplatform.dto.CategoryDTO" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,12 +10,75 @@
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        body {
+            background-color: #f9fafc;
+            font-family: 'Arial', sans-serif;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: #333;
+            font-weight: bold;
+        }
+
+        .container {
+            max-width: 900px;
+            margin-top: 40px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        table {
+            border-collapse: collapse;
+        }
+
+        th {
+            text-align: center;
+        }
+
+        .btn {
+            border-radius: 30px;
+            font-weight: bold;
+            padding: 10px 20px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            border: none;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+
+        .btn-secondary {
+            background-color: #6c757d;
+            border: none;
+        }
+
+        .btn-secondary:hover {
+            background-color: #5a6268;
+        }
+
+        .alert-warning {
+            border-radius: 8px;
+            font-size: 1rem;
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
-<form action="admin.jsp">
-    <button type="submit" class="btn btn-danger">home</button>
-</form>
-<div class="container mt-5">
+
+<div class="container">
+    <form action="admin.jsp" class="mb-4">
+        <button type="submit" class="btn btn-secondary">Home</button>
+    </form>
+
     <h1 class="text-center mb-4">Category Management</h1>
 
     <%
@@ -30,7 +86,7 @@
         if (dataList != null && !dataList.isEmpty()) {
     %>
     <div class="table-responsive">
-        <table class="table table-bordered table-striped">
+        <table class="table table-bordered table-hover align-middle">
             <thead class="table-dark">
             <tr>
                 <th>ID</th>
@@ -43,7 +99,7 @@
                 for (CategoryDTO categoryDTO : dataList) {
             %>
             <tr>
-                <td><%= categoryDTO.getCategoryId() %></td>
+                <td class="text-center"><%= categoryDTO.getCategoryId() %></td>
                 <td><%= categoryDTO.getCategoryName() %></td>
                 <td><%= categoryDTO.getDescription() %></td>
             </tr>
@@ -53,8 +109,8 @@
             </tbody>
         </table>
     </div>
-    <form action="category.jsp">
-        <button type="submit" class="btn btn-danger">ADD UPDATE OR Delete Category</button>
+    <form action="category.jsp" class="text-center mt-4">
+        <button type="submit" class="btn btn-primary">Add, Update, or Delete Category</button>
     </form>
     <% } else { %>
     <div class="alert alert-warning" role="alert">
