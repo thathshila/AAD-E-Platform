@@ -114,13 +114,38 @@
                 <li class="nav-item">
                     <a class="nav-link" href="admin.jsp">ADMIN</a>
                 </li>
-<%--                <li class="nav-item">--%>
-<%--                    <a class="nav-link" href="cart.jsp">Cart <span class="badge bg-primary"></span></a>--%>
-<%--                </li>--%>
+                <li class="nav-item">
+                    <a class="nav-link" href="update-product.jsp">Cart <span class="badge bg-primary"></span></a>
+                </li>
             </ul>
         </div>
     </div>
 </nav>
+<%--category--%>
+<%--<div class="container mt-5">--%>
+<%--    <div class="category-menu">--%>
+<%--        <h5 class="mb-3">All Categories</h5>--%>
+<%--        <a href="category" class="btn btn-primary w-100 mb-4" role="button">Add New Product</a>--%>
+<%--        <div class="mb-3">--%>
+<%--            <label for="categorySelect" class="form-label">Select Category ID</label>--%>
+<%--            <select class="form-select" id="categorySelect" name="category_name" required>--%>
+<%--                <option value="">Select Category</option>--%>
+<%--        <%--%>
+<%--            List<String> categoryIds = (List<String>) request.getAttribute("categories");--%>
+<%--            if (categoryIds != null && !categoryIds.isEmpty()) {--%>
+<%--                for (String categoryName : categoryIds) {--%>
+<%--        %>--%>
+<%--        <option value="<%= categoryName %>"><%= categoryName %></option>--%>
+<%--        <%--%>
+<%--            }--%>
+<%--        } else {--%>
+<%--        %>--%>
+<%--        <option value="" disabled>No categories available</option>--%>
+<%--        <%--%>
+<%--            }--%>
+<%--        %>--%>
+<%--    </div>--%>
+<%--</div>--%>
 
 <!-- Hero Section -->
 <div class="hero">
