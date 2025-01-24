@@ -92,7 +92,7 @@
                 <!-- Products Card -->
                 <div class="col-md-4">
                     <div class="card shadow-sm mb-4">
-                        <img src="https://via.placeholder.com/350x150" class="card-img-top" alt="Products">
+                        <img src="uploads/admin-dash-product.webp" class="card-img-top" alt="Products">
                         <div class="card-body">
                             <h5 class="card-title">Manage Products</h5>
                             <p class="card-text">View and manage all the products available in the store.</p>
@@ -105,7 +105,7 @@
                 <!-- Users Card -->
                 <div class="col-md-4">
                     <div class="card shadow-sm mb-4">
-                        <img src="https://via.placeholder.com/350x150" class="card-img-top" alt="Users">
+                        <img src="uploads/admin-dash-user.webp" class="card-img-top" alt="Users">
                         <div class="card-body">
                             <h5 class="card-title">Manage Users</h5>
                             <p class="card-text">Manage and oversee all registered users.</p>
@@ -117,7 +117,7 @@
                 <!-- Orders Card -->
                 <div class="col-md-4">
                     <div class="card shadow-sm mb-4">
-                        <img src="https://via.placeholder.com/350x150" class="card-img-top" alt="Orders">
+                        <img src="uploads/admin-dash-order.jpg" class="card-img-top" alt="Orders">
                         <div class="card-body">
                             <h5 class="card-title">Manage Orders</h5>
                             <p class="card-text">Track and process pending and completed orders.</p>
@@ -131,7 +131,7 @@
                 <!-- Reports Card -->
                 <div class="col-md-6">
                     <div class="card shadow-sm mb-4">
-                        <img src="https://via.placeholder.com/350x150" class="card-img-top" alt="Reports">
+                        <img src="uploads/admin-dash-category.webp" class="card-img-top" alt="Category">
                         <div class="card-body">
                             <h5 class="card-title">Category</h5>
                             <p class="card-text">View and manage all the category available in the store.</p>
