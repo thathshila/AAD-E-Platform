@@ -1,16 +1,7 @@
-<%--<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>--%>
-<%--<%@ page import="java.util.List"%>--%>
-<%--<%@ page import="lk.ijse.eplatform.dto.CartItemDTO"%>--%>
+
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="lk.ijse.eplatform.dto.CartItemDTO" %>
 <%@ page import="java.util.List" %>
-<%--&lt;%&ndash;%>
-<%--    List<CartItemDTO> cart = (List<CartItemDTO>) session.getAttribute("cart");
-    if (cart == null) {
-        cart = new ArrayList<>();
-    }
-    double subtotal = cart.stream().mapToDouble(CartItemDTO::getSubtotal).sum();
-dash;%&gt;--%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -25,50 +16,54 @@ dash;%&gt;--%>
             padding: 20px;
         }
 
-        .table th, .table td {
-            vertical-align: middle;
-        }
-
-        .cart-summary {
-            text-align: right;
-        }
-
-        .btn-remove {
-            background-color: #dc3545;
-            color: white;
-        }
-
-        .btn-remove:hover {
-            background-color: #c82333;
-        }
-
-        .btn-update {
-            background-color: #0d6efd;
-            color: white;
-        }
-
-        .btn-update:hover {
-            background-color: #0b5ed7;
-        }
-
-        .checkout-btn {
-            background-color: #28a745;
-            color: white;
-            text-decoration: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-        }
-
-        .checkout-btn:hover {
-            background-color: #218838;
-            color: white;
-        }
-
         .cart-container {
             background: white;
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .product-image {
+            max-width: 100px;
+            height: auto;
+
+            .table th, .table td {
+                vertical-align: middle;
+            }
+
+            .cart-summary {
+                text-align: right;
+            }
+
+            .btn-remove {
+                background-color: #dc3545;
+                color: white;
+            }
+
+            .btn-remove:hover {
+                background-color: #c82333;
+            }
+
+            .btn-update {
+                background-color: #0d6efd;
+                color: white;
+            }
+
+            .btn-update:hover {
+                background-color: #0b5ed7;
+            }
+
+            .checkout-btn {
+                background-color: #28a745;
+                color: white;
+                text-decoration: none;
+                padding: 10px 20px;
+                border-radius: 5px;
+            }
+
+            .checkout-btn:hover {
+                background-color: #218838;
+                color: white;
+            }
         }
     </style>
 </head>
@@ -76,10 +71,13 @@ dash;%&gt;--%>
 <div class="container">
     <div class="cart-container">
         <h1 class="text-center mb-4">Your Shopping Cart</h1>
-
+        <form action="index.jsp" class="mb-4">
+            <button type="submit" class="btn btn-secondary">Home</button>
+        </form>
         <table class="table table-bordered">
             <thead class="table-dark">
             <tr>
+                <th>Image</th>
                 <th>Product Name</th>
                 <th>Price</th>
                 <th>Quantity</th>
@@ -94,6 +92,7 @@ dash;%&gt;--%>
                     for (CartItemDTO item : cart) {
             %>
             <tr>
+                <td><img src="<%= item.getImage_path() %>" alt="Product Image" class="product-image"></td>
                 <td><%= item.getProductName() %></td>
                 <td>LKR <%= item.getProductPrice() %></td>
                 <td>
@@ -118,7 +117,7 @@ dash;%&gt;--%>
             } else {
             %>
             <tr>
-                <td colspan="5" class="text-center">Your cart is empty.</td>
+                <td colspan="6" class="text-center">Your cart is empty.</td>
             </tr>
             <%
                 }
@@ -145,3 +144,4 @@ dash;%&gt;--%>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
+

@@ -14,5 +14,5 @@ public class CartItemDTO {
     private int quantity;
     private double subtotal;
 
-
+    private String image_path;
 }

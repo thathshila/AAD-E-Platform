@@ -36,6 +36,7 @@ public class CartServlet extends HttpServlet {
             String productName = req.getParameter("product_name");
             double productPrice = Double.parseDouble(req.getParameter("product_price"));
             int quantity = Integer.parseInt(req.getParameter("product_quantity"));
+            String imageURL = req.getParameter("product_image");
 
             // Check if product already exists in the cart
             boolean itemExists = false;
@@ -52,7 +53,7 @@ public class CartServlet extends HttpServlet {
             if (!itemExists) {
                 // Create a new cart item
                 CartItemDTO cartItem = new CartItemDTO(
-                        productId, productName, productPrice, quantity, productPrice * quantity
+                        productId, productName, productPrice, quantity, productPrice * quantity,imageURL
                 );
                 cart.add(cartItem);
             }
@@ -85,3 +86,4 @@ public class CartServlet extends HttpServlet {
         resp.sendRedirect("add-cart.jsp");
     }
 }
+

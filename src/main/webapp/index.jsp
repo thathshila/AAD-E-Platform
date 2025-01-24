@@ -230,15 +230,13 @@
                     <p>Available: <%= product.getProductQuantity() %> units</p>
 
                     <!-- Action Button -->
-<%--                    <form action="add-cart.jsp">--%>
-<%--                        <button type="submit" class="btn btn-danger">ADD TO CART</button>--%>
-<%--                    </form>--%>
                     <form action="cart" method="post">
                         <input type="hidden" name="product_id" value="<%= product.getProduct_id() %>">
                         <input type="hidden" name="product_name" value="<%= product.getProductName() %>">
                         <input type="hidden" name="product_price" value="<%= product.getProductPrice() %>">
-                        <input type="hidden" name="product_quantity" value="1"> <!-- Default quantity -->
-                        <button type="submit" class="btn btn-danger">ADD TO CART</button>
+                        <input type="hidden" name="product_quantity" value="1">
+                        <input type="hidden" name="product_image" value="<%= product.getImage_path() %>">
+                        <button type="submit" class="btn btn-danger">Add to Cart</button>
                     </form>
 
                 </div>
