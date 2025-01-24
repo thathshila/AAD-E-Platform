@@ -99,7 +99,7 @@
                     <a class="nav-link" href="signin.jsp">Login</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="admin.jsp">Admin</a>
+                    <a class="nav-link" href="admin-login.jsp">Admin</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="add-cart.jsp">Cart <span class="badge bg-primary">0</span></a>

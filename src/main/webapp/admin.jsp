@@ -96,7 +96,7 @@
                         <div class="card-body">
                             <h5 class="card-title">Manage Products</h5>
                             <p class="card-text">View and manage all the products available in the store.</p>
-                            <a href="product.jsp" class="btn btn-primary">Add Products</a>
+                            <a style="margin: 6px" href="product.jsp" class="btn btn-primary">Add Products</a>
                             <a href="update-product.jsp" class="btn btn-primary">Update Products</a><br>
                             <a href="product-list" class="btn btn-primary">View Products</a>
                         </div>

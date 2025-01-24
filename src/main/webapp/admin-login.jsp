@@ -53,7 +53,7 @@
 <body>
 <div class="login-container">
     <h2 class="text-center mb-4">Login</h2>
-    <form action="admin-login" method="get">
+    <form action="admin.jsp" method="get">
         <div class="mb-3">
             <label for="email" class="form-label">Email:</label>
             <input type="email" id="email" name="email" class="form-control" placeholder="Enter your email" required>
