@@ -7,179 +7,268 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page import="lk.ijse.eplatform.dto.ProductDTO" %>
+<%@ page import="java.util.List" %>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Product Listing</title>
+    <title>E-Commerce Platform</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
-            background-color: #f8f9fa;
-            font-family: 'Arial', sans-serif;
+            font-family: Arial, sans-serif;
         }
-
-        .product-card {
-            border: 1px solid #ddd;
-            border-radius: 12px;
-            padding: 20px;
-            text-align: center;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            background-color: #fff;
-            transition: transform 0.3s, box-shadow 0.3s;
-            height: 400px; /* Fixed height for uniformity */
+        .navbar-brand {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        .hero {
+            background: url('https://via.placeholder.com/1920x600') no-repeat center center/cover; /* Replace with your image */
+            height: 20vh;
             display: flex;
             flex-direction: column;
-            justify-content: space-between; /* Distribute space between elements */
-        }
-
-        .product-card img {
-            width: 100%;
-            height: 200px; /* Fixed height for images */
-            object-fit: contain; /* Scale the image proportionally */
-            border-radius: 8px;
-        }
-
-        .product-card h5 {
-            font-size: 1rem;
-            font-weight: bold;
-            margin: 15px 0;
-            flex-grow: 1; /* Allow the title to fill available space */
-        }
-
-        .product-card .rating {
-            color: #f7c308;
-            font-size: 1rem;
-            margin-bottom: 10px;
-        }
-
-        .product-card .price {
-            color: #b12704;
-            font-weight: bold;
-            font-size: 1.1rem;
-            margin-bottom: 10px;
-        }
-
-        .product-card .delivery {
-            font-size: 0.9rem;
-            color: #565959;
-        }
-
-        .product-card .discount {
-            color: #28a745;
-            font-weight: bold;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .page-header {
+            justify-content: center;
+            align-items: center;
             text-align: center;
-            margin-bottom: 40px;
-            color: #333;
+            color: white;
+            padding: 0 20px;
+            box-shadow: inset 0 0 100px rgba(0, 0, 0, 0.6); /* Adds a dark overlay effect */
+            position: relative;
         }
 
-        .page-header h2 {
-            font-size: 2rem;
-            font-weight: 600;
-            margin-bottom: 20px;
+        /* Overlay for better text visibility */
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5); /* Adds a semi-transparent overlay */
+            z-index: 1;
         }
 
-        .page-header p {
-            font-size: 1rem;
-            color: #555;
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin: 0;
+            z-index: 2;
+            position: relative;
         }
 
+        .hero p {
+            font-size: 1.25rem;
+            font-weight: 300;
+            margin-top: 10px;
+            z-index: 2;
+            position: relative;
+        }
+        .hero-carousel img {
+            height: 400px;
+            object-fit: cover;
+        }
+        .category-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .category-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+        .category-card img {
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+            object-fit: cover;
+            height: 150px;
+        }
+        .footer {
+            background-color: #f8f9fa;
+            padding: 20px 0;
+        }
+        .footer .fa {
+            margin-right: 10px;
+        }
     </style>
 </head>
 <body>
-
-<div class="container my-5">
-    <div class="page-header">
-        <h2>Discover Our Latest Products</h2>
-        <p>Check out the latest offers and get your favorite items now! Prices and availability may vary by product size and color.</p>
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+        <a class="navbar-brand" href="#">E-Shop</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="index.jsp">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="new-product-list">Categories</a>
+                </li>
+                <%--                <li class="nav-item">--%>
+                <%--                    <a class="nav-link" href="add-cart.jsp">ADD Cart <span class="badge bg-primary">0</span></a>--%>
+                <%--                </li>--%>
+                <li class="nav-item">
+                    <a class="nav-link" href="signin.jsp">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="admin.jsp">ADMIN</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="kitchen.jsp">Cart <span class="badge bg-primary"></span></a>
+                </li>
+            </ul>
+        </div>
     </div>
+</nav>
+<%--category--%>
+<%--<div class="container mt-5">--%>
+<%--    <div class="category-menu">--%>
+<%--        <h5 class="mb-3">All Categories</h5>--%>
+<%--        <a href="category" class="btn btn-primary w-100 mb-4" role="button">Add New Product</a>--%>
+<%--        <div class="mb-3">--%>
+<%--            <label for="categorySelect" class="form-label">Select Category ID</label>--%>
+<%--            <select class="form-select" id="categorySelect" name="category_name" required>--%>
+<%--                <option value="">Select Category</option>--%>
+<%--        <%--%>
+<%--            List<String> categoryIds = (List<String>) request.getAttribute("categories");--%>
+<%--            if (categoryIds != null && !categoryIds.isEmpty()) {--%>
+<%--                for (String categoryName : categoryIds) {--%>
+<%--        %>--%>
+<%--        <option value="<%= categoryName %>"><%= categoryName %></option>--%>
+<%--        <%--%>
+<%--            }--%>
+<%--        } else {--%>
+<%--        %>--%>
+<%--        <option value="" disabled>No categories available</option>--%>
+<%--        <%--%>
+<%--            }--%>
+<%--        %>--%>
+<%--    </div>--%>
+<%--</div>--%>
 
-    <div class="row g-4">
-        <!-- Product Cards -->
-        <div class="col-12 col-md-6 col-lg-3">
-            <div class="product-card">
-                <img src="images/03.jpg" alt="LEVOIT Top Fill Humidifiers for Bedroom">
-                <h5>LEVOIT Top Fill Humidifiers for Bedroom</h5>
-                <p class="rating">⭐⭐⭐⭐☆</p>
-                <p class="price">$39.99</p>
-                <p class="delivery">Delivery Wed, Jan 29</p>
-            </div>
-        </div>
-        <div class="col-12 col-md-6 col-lg-3">
-            <div class="product-card">
-                <img src="images/03.jpg" alt="Dreo Humidifiers for Bedroom">
-                <h5>Dreo Humidifiers for Bedroom</h5>
-                <p class="rating">⭐⭐⭐⭐☆</p>
-                <p class="price">$39.99 <span class="discount">Save 10%</span></p>
-                <p class="delivery">Delivery Wed, Jan 29</p>
-            </div>
-        </div>
-        <div class="col-12 col-md-6 col-lg-3">
-            <div class="product-card">
-                <img src="images/03.jpg" alt="LEVOIT Air Purifiers for Bedroom">
-                <h5>LEVOIT Air Purifiers for Bedroom</h5>
-                <p class="rating">⭐⭐⭐⭐⭐</p>
-                <p class="price">$46.86</p>
-                <p class="delivery">Delivery Wed, Jan 29</p>
-            </div>
-        </div>
-        <div class="col-12 col-md-6 col-lg-3">
-            <div class="product-card">
-                <img src="images/03.jpg" alt="OLANLY Bathroom Rugs">
-                <h5>OLANLY Bathroom Rugs</h5>
-                <p class="rating">⭐⭐⭐⭐☆</p>
-                <p class="price">$9.99 <span class="discount">Save 10%</span></p>
-                <p class="delivery">Delivery Wed, Jan 29</p>
-            </div>
-        </div>
-        <div class="col-12 col-md-6 col-lg-3">
-            <div class="product-card">
-                <img src="images/04.jpg" alt="Product 5">
-                <h5>Product 5 Title</h5>
-                <p class="rating">⭐⭐⭐⭐☆</p>
-                <p class="price">$29.99</p>
-                <p class="delivery">Delivery Fri, Feb 1</p>
-            </div>
-        </div>
-        <div class="col-12 col-md-6 col-lg-3">
-            <div class="product-card">
-                <img src="images/05.jpg" alt="Product 6">
-                <h5>Product 6 Title</h5>
-                <p class="rating">⭐⭐⭐⭐⭐</p>
-                <p class="price">$49.99</p>
-                <p class="delivery">Delivery Fri, Feb 1</p>
-            </div>
-        </div>
-        <div class="col-12 col-md-6 col-lg-3">
-            <div class="product-card">
-                <img src="images/06.jpg" alt="Product 7">
-                <h5>Product 7 Title</h5>
-                <p class="rating">⭐⭐⭐⭐☆</p>
-                <p class="price">$39.99</p>
-                <p class="delivery">Delivery Fri, Feb 1</p>
-            </div>
-        </div>
-        <div class="col-12 col-md-6 col-lg-3">
-            <div class="product-card">
-                <img src="images/07.jpg" alt="Product 8">
-                <h5>Product 8 Title</h5>
-                <p class="rating">⭐⭐⭐⭐⭐</p>
-                <p class="price">$59.99</p>
-                <p class="delivery">Delivery Fri, Feb 1</p>
+<!-- Hero Section -->
+<div class="hero">
+    <h1>Welcome to E-Shop</h1>
+    <p>Discover amazing deals and products tailored for you</p>
+</div>
+<!-- Search Bar -->
+<div class="container my-4">
+    <div class="row">
+        <div class="col-md-8 mx-auto">
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="Search for products...">
+                <button class="btn btn-primary" style="background-color: #f0c14b">Search</button>
             </div>
         </div>
     </div>
 </div>
+<a href="new-product-list" class="btn btn-primary w-100" style="background-color:#f0c14b" role="button">SHOP Now</a>
 
+<!-- Hero Carousel -->
+<div id="heroCarousel" class="carousel slide hero-carousel" data-bs-ride="carousel">
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <img src="uploads/04.webp" class="d-block w-100" alt="Slide 1">
+            <div class="carousel-caption d-none d-md-block">
+                <h1 style="color: white">Just in: Holiday Gifts</h1>
+                <p>Find the perfect gift for your loved ones.</p>
+            </div>
+        </div>
+        <div class="carousel-item">
+            <img src="uploads/02.jpg" class="d-block w-100" alt="Slide 2">
+            <div class="carousel-caption d-none d-md-block">
+                <h1 style="color: white">Shop the Latest Trends</h1>
+                <p>Explore our new collection.</p>
+            </div>
+        </div>
+        <div class="carousel-item">
+            <img src="uploads/03.jpg" class="d-block w-100" alt="Slide 3">
+            <div class="carousel-caption d-none d-md-block">
+                <h1 style="color: white">Exclusive Deals</h1>
+                <p>Save more with our special offers.</p>
+            </div>
+        </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    </button>
+</div>
+
+<%--<!-- Categories Section -->--%>
+<div class="container mt-5">
+    <h1 class="text-center mb-4">Our Products</h1>
+
+    <%
+        // Fetch the product list passed from the servlet
+        List<ProductDTO> productList = (List<ProductDTO>) request.getAttribute("productList");
+        if (productList != null && !productList.isEmpty()) {
+    %>
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4">
+        <%
+            for (ProductDTO product : productList) {
+        %>
+        <div class="col">
+            <div class="card h-100">
+                <!-- Product Image -->
+                <img src="<%= product.getImage_path() %>" class="card-img-top" alt="<%= product.getProductName() %>" style="height: 200px; object-fit: cover;">
+
+                <div class="card-body">
+                    <!-- Product Name -->
+                    <h5 class="card-title"><%= product.getProductName() %></h5>
+
+                    <!-- Product Description -->
+                    <p class="card-text text-muted"><%= product.getProductDescription() %></p>
+
+                    <!-- Product Price -->
+                    <p class="fw-bold">Price: $<%= product.getProductPrice() %></p>
+
+                    <!-- Product Quantity -->
+                    <p>Available: <%= product.getProductQuantity() %> units</p>
+
+                    <!-- Action Button -->
+                    <form action="cart" method="post">
+                        <input type="hidden" name="product_id" value="<%= product.getProduct_id() %>">
+                        <input type="hidden" name="product_name" value="<%= product.getProductName() %>">
+                        <input type="hidden" name="product_price" value="<%= product.getProductPrice() %>">
+                        <input type="hidden" name="product_quantity" value="1">
+                        <input type="hidden" name="product_image" value="<%= product.getImage_path() %>">
+                        <button type="submit" class="btn btn-danger">Add to Cart</button>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+        <%
+            }
+        %>
+    </div>
+    <% } else { %>
+    <div class="alert alert-warning text-center" role="alert">
+        No products available at the moment.
+    </div>
+    <% } %>
+</div>
+
+<!-- Footer -->
+<footer class="footer text-center">
+    <div class="container">
+        <p>Follow us on</p>
+        <div>
+            <a href="#"><i class="fa fa-facebook fa-lg"></i></a>
+            <a href="#"><i class="fa fa-twitter fa-lg"></i></a>
+            <a href="#"><i class="fa fa-instagram fa-lg"></i></a>
+            <a href="#"><i class="fa fa-linkedin fa-lg"></i></a>
+        </div>
+        <p class="mt-3">© 2025 E-Shop. All Rights Reserved.</p>
+    </div>
+</footer>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
