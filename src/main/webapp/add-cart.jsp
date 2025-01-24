@@ -1,7 +1,6 @@
 
-<%@ page import="java.util.ArrayList" %>
-<%@ page import="lk.ijse.eplatform.dto.CartItemDTO" %>
 <%@ page import="java.util.List" %>
+<%@ page import="lk.ijse.eplatform.dto.CartItemDTO" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,48 +21,42 @@
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
-        .product-image {
-            max-width: 100px;
+
+        .cart-item-card {
+            border: none;
+            margin-bottom: 20px;
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 10px;
+        }
+
+        .cart-item-card img {
+            width: 100%;
             height: auto;
+            max-height: 120px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
 
-            .table th, .table td {
-                vertical-align: middle;
-            }
+        .cart-summary {
+            background-color: #ffffff;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
 
-            .cart-summary {
-                text-align: right;
-            }
+        .checkout-btn {
+            background-color: #28a745;
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            display: inline-block;
+        }
 
-            .btn-remove {
-                background-color: #dc3545;
-                color: white;
-            }
-
-            .btn-remove:hover {
-                background-color: #c82333;
-            }
-
-            .btn-update {
-                background-color: #0d6efd;
-                color: white;
-            }
-
-            .btn-update:hover {
-                background-color: #0b5ed7;
-            }
-
-            .checkout-btn {
-                background-color: #28a745;
-                color: white;
-                text-decoration: none;
-                padding: 10px 20px;
-                border-radius: 5px;
-            }
-
-            .checkout-btn:hover {
-                background-color: #218838;
-                color: white;
-            }
+        .checkout-btn:hover {
+            background-color: #218838;
         }
     </style>
 </head>
@@ -74,58 +67,47 @@
         <form action="index.jsp" class="mb-4">
             <button type="submit" class="btn btn-secondary">Home</button>
         </form>
-        <table class="table table-bordered">
-            <thead class="table-dark">
-            <tr>
-                <th>Image</th>
-                <th>Product Name</th>
-                <th>Price</th>
-                <th>Quantity</th>
-                <th>Subtotal</th>
-                <th>Actions</th>
-            </tr>
-            </thead>
-            <tbody>
+        <div class="row">
             <%
                 List<CartItemDTO> cart = (List<CartItemDTO>) session.getAttribute("cart");
                 if (cart != null && !cart.isEmpty()) {
                     for (CartItemDTO item : cart) {
             %>
-            <tr>
-                <td><img src="<%= item.getImage_path() %>" alt="Product Image" class="product-image"></td>
-                <td><%= item.getProductName() %></td>
-                <td>LKR <%= item.getProductPrice() %></td>
-                <td>
-                    <form action="cart" method="post" class="d-flex">
-                        <input type="hidden" name="action" value="update">
-                        <input type="hidden" name="product_id" value="<%= item.getProductId() %>">
-                        <input type="number" name="quantity" value="<%= item.getQuantity() %>" min="1" class="form-control me-2" style="max-width: 80px;">
-                        <button type="submit" class="btn btn-primary btn-sm">Update</button>
-                    </form>
-                </td>
-                <td>LKR <%= item.getSubtotal() %></td>
-                <td>
-                    <form action="cart" method="post">
-                        <input type="hidden" name="action" value="remove">
-                        <input type="hidden" name="product_id" value="<%= item.getProductId() %>">
-                        <button type="submit" class="btn btn-danger btn-sm">Remove</button>
-                    </form>
-                </td>
-            </tr>
+            <div class="col-md-6 col-lg-4">
+                <div class="card cart-item-card">
+                    <img src="<%= item.getImage_path() %>" alt="Product Image" class="card-img-top">
+                    <div class="card-body">
+                        <h5 class="card-title"><%= item.getProductName() %></h5>
+                        <p class="card-text">Price: LKR <%= item.getProductPrice() %></p>
+                        <form action="cart" method="post" class="d-flex align-items-center mb-3">
+                            <input type="hidden" name="action" value="update">
+                            <input type="hidden" name="product_id" value="<%= item.getProductId() %>">
+                            <input type="number" name="quantity" value="<%= item.getQuantity() %>" min="1" class="form-control me-2" style="max-width: 80px;">
+                            <button type="submit" class="btn btn-primary btn-sm">Update</button>
+                        </form>
+                        <p>Subtotal: LKR <%= item.getSubtotal() %></p>
+                        <form action="cart" method="post">
+                            <input type="hidden" name="action" value="remove">
+                            <input type="hidden" name="product_id" value="<%= item.getProductId() %>">
+                            <button type="submit" class="btn btn-danger btn-sm">Remove</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
             <%
                 }
             } else {
             %>
-            <tr>
-                <td colspan="6" class="text-center">Your cart is empty.</td>
-            </tr>
+            <div class="col-12 text-center">
+                <p>Your cart is empty.</p>
+            </div>
             <%
                 }
             %>
-            </tbody>
-        </table>
+        </div>
 
-        <div class="cart-summary">
+        <!-- Cart Summary -->
+        <div class="cart-summary mt-4">
             <%
                 double subtotal = 0;
                 if (cart != null) {
@@ -135,7 +117,7 @@
                 }
             %>
             <h3>Subtotal: <span class="text-primary">LKR <%= subtotal %></span></h3>
-            <a href="checkout.jsp" class="btn btn-success">Proceed to Checkout</a>
+            <a href="check-out.jsp" class="checkout-btn">Proceed to Checkout</a>
         </div>
     </div>
 </div>
@@ -144,4 +126,3 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
-

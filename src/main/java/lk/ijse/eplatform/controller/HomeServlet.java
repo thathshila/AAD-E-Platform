@@ -27,55 +27,6 @@ public class HomeServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-//        List<CategoryDTO> categories = new ArrayList<>();
-//        List<ProductDTO> products = new ArrayList<>();
-//
-//        try (Connection connection = dataSource.getConnection()) {
-//            // Fetch Categories
-//            String categoryQuery = "SELECT category_id, category_name, description FROM categories";
-//            try (PreparedStatement categoryStmt = connection.prepareStatement(categoryQuery);
-//                 ResultSet categoryRs = categoryStmt.executeQuery()) {
-//
-//                while (categoryRs.next()) {
-//                    CategoryDTO category = new CategoryDTO();
-//                    category.setCategoryId(categoryRs.getInt("category_id"));
-//                    category.setCategoryName(categoryRs.getString("category_name"));
-//                    category.setDescription(categoryRs.getString("description"));
-//                    categories.add(category);
-//                }
-//            }
-//
-//            // Fetch Products
-//            String productQuery = "SELECT product_id, product_name, product_description, product_price, product_quantity, category_id, image_path FROM products";
-//            try (PreparedStatement productStmt = connection.prepareStatement(productQuery);
-//                 ResultSet productRs = productStmt.executeQuery()) {
-//
-//                while (productRs.next()) {
-//                    ProductDTO product = new ProductDTO();
-//                    product.setProduct_id(productRs.getInt("product_id"));
-//                    product.setProductName(productRs.getString("product_name"));
-//                    product.setProductDescription(productRs.getString("product_description"));
-//                    product.setProductPrice(productRs.getDouble("product_price"));
-//                    product.setProductQuantity(productRs.getInt("product_quantity"));
-//                    product.setCategory_id(productRs.getInt("category_id"));
-//                    product.setImage_path(productRs.getString("image_path"));
-//                    products.add(product);
-//                }
-//            }
-//
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//
-//        // Attach data to the request
-//        req.setAttribute("categories", categories);
-//        req.setAttribute("products", products);
-//
-//        // Forward the request to the JSP page
-//        req.getRequestDispatcher("/index.jsp").forward(req, resp);
-//    }
-//
-//}
                 List<Product> products = new ArrayList<>();
                 List<Category> categories = new ArrayList<>();
 
