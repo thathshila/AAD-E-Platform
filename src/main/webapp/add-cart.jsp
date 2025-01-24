@@ -117,7 +117,7 @@
                 }
             %>
             <h3>Subtotal: <span class="text-primary">LKR <%= subtotal %></span></h3>
-            <a href="check-out.jsp" class="checkout-btn">Proceed to Checkout</a>
+            <a href="cart.jsp" class="checkout-btn">Proceed to Checkout</a>
         </div>
     </div>
 </div>
