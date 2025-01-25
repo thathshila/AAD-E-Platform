@@ -104,6 +104,9 @@
                 <li class="nav-item">
                     <a class="nav-link" href="add-cart.jsp">Cart <span class="badge bg-primary">0</span></a>
                 </li>
+                <li>
+                    <a href="logout.jsp" class="btn btn-danger">Logout</a>
+                </li>
             </ul>
         </div>
     </div>
