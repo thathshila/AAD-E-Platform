@@ -17,7 +17,6 @@
     <h1 class="text-center mt-5">You have successfully logged out!</h1>
     <p class="text-center">We hope to see you again soon!</p>
     <%
-        // Invalidate the session without redeclaring it
         session.invalidate();  // Invalidates the current session
     %>
     <div class="text-center mt-3">

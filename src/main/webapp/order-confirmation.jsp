@@ -25,8 +25,8 @@
 <body class="bg-light">
 <div class="container mt-5">
     <div class="alert alert-success text-center" role="alert">
-        <h1 class="alert-heading">Your order has been confirmed!</h1>
-        <p class="mb-4">Thank you for shopping with us. You will receive an email with your order details shortly.</p>
+        <h1 class="alert-heading">Your orderDTO has been confirmed!</h1>
+        <p class="mb-4">Thank you for shopping with us. You will receive an email with your orderDTO details shortly.</p>
         <a href="index.jsp" class="btn btn-primary">Back to Home</a>
     </div>
 </div>
