@@ -8,6 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="java.util.List" %>
 <%@ page import="lk.ijse.eplatform.dto.CartItemDTO" %>
+<%@ page import="lk.ijse.eplatform.dto.UserDTO" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -36,7 +37,7 @@
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
-        .place-order-btn {
+        .place-orderDTO-btn {
             background-color: #28a745;
             color: white;
             text-decoration: none;
@@ -45,16 +46,51 @@
             display: inline-block;
         }
 
-        .place-order-btn:hover {
+        .place-orderDTO-btn:hover {
             background-color: #218838;
         }
     </style>
 </head>
 <body>
+
+<%
+//    UserDTO user = (UserDTO) session.getAttribute("user");
+    List<CartItemDTO> cart = (List<CartItemDTO>) session.getAttribute("cart");
+%>
+<%--<%--%>
+<%--    UserDTO user = (UserDTO) session.getAttribute("user");--%>
+<%--    if (user == null) {--%>
+<%--        System.out.println("User not logged in. Please log in to proceed with checkout.");--%>
+<%--        response.sendRedirect("signin.jsp");--%>
+<%--        return;--%>
+<%--    } else {--%>
+<%--    System.out.println("User retrieved: ID = " + user.getUserId() + ", Name = " + user.getUserName());--%>
+<%--    }--%>
+<%--%>--%>
+
+<div class="container">
+<%--    <h2>Checkout</h2>--%>
+<%--    <h4>User Details</h4>--%>
+<%--    <p><strong>Name:</strong> <%= user.getUserName() %></p>--%>
+<%--    <p><strong>Email:</strong> <%= user.getEmail() %></p>--%>
+
+    <h4>Cart Summary</h4>
+    <ul>
+        <% for (CartItemDTO item : cart) { %>
+        <li>
+            <%= item.getProductName() %> - LKR <%= item.getSubtotal() %>
+        </li>
+        <% } %>
+    </ul>
+<%--    <form action="checkout" method="post">--%>
+<%--        <button type="submit">Place Order</button>--%>
+<%--    </form>--%>
+</div>
+
 <div class="container">
     <div class="checkout-container">
         <h1 class="text-center mb-4">Checkout</h1>
-        <form action="order-confirmation.jsp" method="post">
+        <form action="orderDTO-confirmation.jsp" method="post">
             <div class="row">
                 <!-- Billing Details -->
                 <div class="col-md-6">
@@ -101,7 +137,6 @@
                     <h3>Order Summary</h3>
                     <div class="summary-card">
                         <%
-                            List<CartItemDTO> cart = (List<CartItemDTO>) session.getAttribute("cart");
                             double total = 0;
                             if (cart != null) {
                                 for (CartItemDTO item : cart) {
@@ -130,7 +165,7 @@
 
             <!-- Place Order Button -->
             <div class="text-end mt-4">
-                <button type="submit" class="place-order-btn">Place Order</button>
+                <button type="submit" class="place-orderDTO-btn">Place Order</button>
             </div>
         </form>
     </div>
@@ -140,4 +175,3 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
-
