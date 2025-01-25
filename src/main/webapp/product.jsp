@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add Product</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <style>
         body {
             background-color: #f8f9fa;
@@ -53,6 +54,16 @@
     </form>
 
     <h1>Add Product</h1>
+    <%
+        String message = request.getParameter("message");
+        String error = request.getParameter("error");
+    %>
+
+    <% if (message != null) { %>
+    <div class="alert alert-success" role="alert"><%= message %></div>
+    <% } else if (error != null) { %>
+    <div class="alert alert-danger" role="alert"><%= error %></div>
+    <% } %>
 
     <a href="category-name" class="btn btn-primary w-100 mb-4" role="button">Add New Product</a>
 
@@ -100,7 +111,27 @@
         <button type="submit" name="action" value="save" class="btn btn-primary w-100">Add Product</button>
     </form>
 </div>
-
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        <% if (message != null) { %>
+        Swal.fire({
+            icon: 'success',
+            title: 'Success',
+            text: '<%= message %>',
+            confirmButtonColor: '#3085d6',
+            confirmButtonText: 'OK'
+        });
+        <% } else if (error != null) { %>
+        Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: '<%= error %>',
+            confirmButtonColor: '#d33',
+            confirmButtonText: 'Try Again'
+        });
+        <% } %>
+    });
+</script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
