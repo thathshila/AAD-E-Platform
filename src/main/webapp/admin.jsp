@@ -109,7 +109,8 @@
                         <div class="card-body">
                             <h5 class="card-title">Manage Users</h5>
                             <p class="card-text">Manage and oversee all registered users.</p>
-                            <a href="admin-login.jsp" class="btn btn-success">Register Users</a>
+                            <a style="margin: 6px" href="admin-register.jsp" class="btn btn-success">Register Users</a>
+                            <a href="update-user.jsp" class="btn btn-success">Update Users</a>
                             <a href="user-list" class="btn btn-success">View Users</a>
                         </div>
                     </div>
@@ -120,8 +121,8 @@
                         <img src="uploads/admin-dash-order.jpg" class="card-img-top" alt="Orders">
                         <div class="card-body">
                             <h5 class="card-title">Manage Orders</h5>
-                            <p class="card-text">Track and process pending and completed orders.</p>
-                            <a href="#" class="btn btn-warning">View Orders</a>
+                            <p class="card-text">Track and process pending and completed orderDTOS.</p>
+                            <a href="order-list" class="btn btn-warning">View Orders</a>
                         </div>
                     </div>
                 </div>
@@ -143,7 +144,7 @@
                 <!-- Settings Card -->
                 <div class="col-md-6">
                     <div class="card shadow-sm mb-4">
-                        <img src="https://via.placeholder.com/350x150" class="card-img-top" alt="Settings">
+                        <img src="uploads/set.jpg" class="card-img-top" alt="Settings">
                         <div class="card-body">
                             <h5 class="card-title">Settings</h5>
                             <p class="card-text">Update configurations and manage admin settings.</p>
