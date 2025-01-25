@@ -22,7 +22,15 @@
             background-color: #f8f9fa;
             padding: 20px;
         }
+        .navbar-brand {
+            font-size: 1.75rem;
+            font-weight: bold;
+            color: #f0c14b !important;
+        }
 
+        .navbar-nav .nav-link {
+            color: #fff !important;
+        }
         .checkout-container {
             background: white;
             padding: 20px;
@@ -52,27 +60,43 @@
     </style>
 </head>
 <body>
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+    <div class="container">
+        <a class="navbar-brand" href="#">E-Shop</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="index.jsp">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="new-product-list">Categories</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="signin.jsp">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="admin-login.jsp">Admin</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="add-cart.jsp">Cart <span class="badge bg-primary">0</span></a>
+                </li>
+                <li>
+                    <a href="logout.jsp" class="btn btn-danger">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
 
 <%
-//    UserDTO user = (UserDTO) session.getAttribute("user");
     List<CartItemDTO> cart = (List<CartItemDTO>) session.getAttribute("cart");
 %>
-<%--<%--%>
-<%--    UserDTO user = (UserDTO) session.getAttribute("user");--%>
-<%--    if (user == null) {--%>
-<%--        System.out.println("User not logged in. Please log in to proceed with checkout.");--%>
-<%--        response.sendRedirect("signin.jsp");--%>
-<%--        return;--%>
-<%--    } else {--%>
-<%--    System.out.println("User retrieved: ID = " + user.getUserId() + ", Name = " + user.getUserName());--%>
-<%--    }--%>
-<%--%>--%>
 
 <div class="container">
-<%--    <h2>Checkout</h2>--%>
-<%--    <h4>User Details</h4>--%>
-<%--    <p><strong>Name:</strong> <%= user.getUserName() %></p>--%>
-<%--    <p><strong>Email:</strong> <%= user.getEmail() %></p>--%>
 
     <h4>Cart Summary</h4>
     <ul>
@@ -82,15 +106,12 @@
         </li>
         <% } %>
     </ul>
-<%--    <form action="checkout" method="post">--%>
-<%--        <button type="submit">Place Order</button>--%>
-<%--    </form>--%>
 </div>
 
 <div class="container">
     <div class="checkout-container">
         <h1 class="text-center mb-4">Checkout</h1>
-        <form action="orderDTO-confirmation.jsp" method="post">
+        <form action="order-confirmation.jsp" method="post">
             <div class="row">
                 <!-- Billing Details -->
                 <div class="col-md-6">
