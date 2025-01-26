@@ -43,7 +43,11 @@
     </style>
 </head>
 <body>
+
 <div class="container">
+    <form action="admin.jsp">
+        <button type="submit" class="btn btn-danger" style="background-color: orange">Home</button>
+    </form>
     <h1>Search, Update, and Delete Product</h1>
 
 <%
