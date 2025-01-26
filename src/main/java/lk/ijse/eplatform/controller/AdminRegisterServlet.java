@@ -31,7 +31,7 @@ public class AdminRegisterServlet extends HttpServlet {
         String phone = role.equals("admin") ? req.getParameter("phone") : null;
         String address = role.equals("admin") ? req.getParameter("address") : null;
 
-        // Encrypt the password
+
         String hashedPassword = BCrypt.hashpw(plainPassword, BCrypt.gensalt());
 
         try (Connection connection = dataSource.getConnection()) {
@@ -40,7 +40,7 @@ public class AdminRegisterServlet extends HttpServlet {
                 preparedStatement.setString(1, userName);
                 preparedStatement.setString(2, hashedPassword);
 
-                // Set email with debugging
+
                 if (email != null && !email.trim().isEmpty()) {
                     preparedStatement.setString(3, email);
 
@@ -48,14 +48,14 @@ public class AdminRegisterServlet extends HttpServlet {
                     preparedStatement.setNull(3, java.sql.Types.VARCHAR);
                 }
 
-                // Set phone
+
                 if (phone != null && !phone.trim().isEmpty()) {
                     preparedStatement.setString(4, phone);
                 } else {
                     preparedStatement.setNull(4, java.sql.Types.VARCHAR);
                 }
 
-                // Set address
+
                 if (address != null && !address.trim().isEmpty()) {
                     preparedStatement.setString(5, address);
                 } else {

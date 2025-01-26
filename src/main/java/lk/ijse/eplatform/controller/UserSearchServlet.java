@@ -3,8 +3,6 @@ package lk.ijse.eplatform.controller;
 import jakarta.annotation.Resource;
 import lk.ijse.eplatform.dto.UserDTO;
 
-
-import javax.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -65,19 +63,16 @@ public class UserSearchServlet extends HttpServlet {
         ResultSet resultSet = null;
 
         try {
-            // Get a connection from the DataSource
+
             connection = dataSource.getConnection();
 
-            // Prepare the SQL query
             String query = "SELECT * FROM users WHERE user_name = ?";
             preparedStatement = connection.prepareStatement(query);
             preparedStatement.setString(1, userName);
 
-            // Execute the query
             resultSet = preparedStatement.executeQuery();
 
             if (resultSet.next()) {
-                // Map the result set to UserDTO
                 return new UserDTO(
                         resultSet.getInt("user_id"),
                         resultSet.getString("user_name"),
@@ -90,7 +85,6 @@ public class UserSearchServlet extends HttpServlet {
                 );
             }
         } finally {
-            // Close resources
             if (resultSet != null) resultSet.close();
             if (preparedStatement != null) preparedStatement.close();
             if (connection != null) connection.close();

@@ -30,20 +30,20 @@ public class Category extends HttpServlet {
              Statement stm = connection.createStatement();
              ResultSet rst = stm.executeQuery("SELECT category_name FROM categories")) {
 
-            // Fetch category names from the result set and add them to the list
+
             while (rst.next()) {
                 categoryNames.add(rst.getString("category_name")); // Corrected to getString
             }
 
-            // Set the category names as a request attribute
+
             req.setAttribute("categories", categoryNames);
 
-            // Forward the request to product.jsp
+
             RequestDispatcher requestDispatcher = req.getRequestDispatcher("index.jsp");
             requestDispatcher.forward(req, resp);
         } catch (SQLException e) {
             e.printStackTrace();
-            // Log error and redirect to an error page
+
             resp.sendRedirect("category-list.jsp?error=Failed to load categories");
         }
     }

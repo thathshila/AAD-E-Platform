@@ -31,7 +31,7 @@ public class HomeServlet extends HttpServlet {
                 List<Category> categories = new ArrayList<>();
 
                 try (Connection conn = dataSource.getConnection()) {
-                    // Fetch categories
+
                     String categoryQuery = "SELECT * FROM categories";
                     try (PreparedStatement categoryStmt = conn.prepareStatement(categoryQuery);
                          ResultSet categoryRs = categoryStmt.executeQuery()) {
@@ -44,7 +44,7 @@ public class HomeServlet extends HttpServlet {
                         }
                     }
 
-                    // Fetch products
+
                     String productQuery = "SELECT id, name, price, image_url, category_id FROM products";
                     try (PreparedStatement productStmt = conn.prepareStatement(productQuery);
                          ResultSet productRs = productStmt.executeQuery()) {
@@ -59,11 +59,11 @@ public class HomeServlet extends HttpServlet {
                         }
                     }
 
-                    // Set attributes for JSP
+
                     req.setAttribute("products", products);
                     req.setAttribute("categories", categories);
 
-                    // Forward to JSP
+
                     req.getRequestDispatcher("/products.jsp").forward(req, resp);
 
                 } catch (SQLException e) {

@@ -25,17 +25,15 @@ public class OrderListServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        // List to store all orders
+
         List<OrderDTO> orderList = new ArrayList<>();
 
-        // Query to fetch all orders
         String query = "SELECT order_id, user_id, total_price, date FROM orders";
 
         try (Connection connection = dataSource.getConnection();
              PreparedStatement pst = connection.prepareStatement(query);
              ResultSet rs = pst.executeQuery()) {
 
-            // Iterate through the result set and populate the order list
             while (rs.next()) {
                 OrderDTO order = new OrderDTO();
                 order.setOrderId(rs.getInt("order_id"));
@@ -52,10 +50,8 @@ public class OrderListServlet extends HttpServlet {
             return;
         }
 
-        // Set the order list as a request attribute
         req.setAttribute("orderList", orderList);
 
-        // Forward to JSP page for rendering
         req.getRequestDispatcher("/order-list.jsp").forward(req, resp);
     }
 }

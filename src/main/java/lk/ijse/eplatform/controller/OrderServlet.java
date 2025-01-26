@@ -37,9 +37,8 @@ public class OrderServlet extends HttpServlet {
 
         try {
             connection = dataSource.getConnection();
-            connection.setAutoCommit(false); // Begin transaction
+            connection.setAutoCommit(false);
 
-            // Insert into `orders` table
             String insertOrderSQL = "INSERT INTO orders (user_id, total_price, date) VALUES (?, ?, ?)";
             orderStmt = connection.prepareStatement(insertOrderSQL, Statement.RETURN_GENERATED_KEYS);
             double totalPrice = calculateTotalPrice(cart); // Helper method to calculate total price
@@ -48,14 +47,14 @@ public class OrderServlet extends HttpServlet {
             orderStmt.setTimestamp(3, Timestamp.valueOf(LocalDateTime.now()));
             orderStmt.executeUpdate();
 
-            // Retrieve generated order_id
+
             ResultSet generatedKeys = orderStmt.getGeneratedKeys();
             if (!generatedKeys.next()) {
                 throw new SQLException("Failed to retrieve order ID.");
             }
             int orderId = generatedKeys.getInt(1);
 
-            // Insert into `order_details` table
+
             String insertOrderDetailsSQL = "INSERT INTO order_details (order_id, product_id, quantity, price) VALUES (?, ?, ?, ?)";
             orderDetailsStmt = connection.prepareStatement(insertOrderDetailsSQL);
 
@@ -68,19 +67,17 @@ public class OrderServlet extends HttpServlet {
             }
             orderDetailsStmt.executeBatch();
 
-            // Commit transaction
+
             connection.commit();
 
-            // Clear the cart
             session.removeAttribute("cart");
 
-            // Redirect to order confirmation page
             resp.sendRedirect("order-confirmation.jsp?status=success");
 
         } catch (SQLException e) {
             if (connection != null) {
                 try {
-                    connection.rollback(); // Rollback transaction on error
+                    connection.rollback();
                 } catch (SQLException ex) {
                     ex.printStackTrace();
                 }
@@ -98,7 +95,6 @@ public class OrderServlet extends HttpServlet {
         }
     }
 
-    // Helper method to calculate total price
     private double calculateTotalPrice(List<CartItemDTO> cart) {
         double total = 0;
         for (CartItemDTO item : cart) {

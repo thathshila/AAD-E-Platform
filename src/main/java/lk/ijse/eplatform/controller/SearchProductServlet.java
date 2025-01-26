@@ -148,19 +148,17 @@ public class SearchProductServlet extends HttpServlet {
         ResultSet resultSet = null;
 
         try {
-            // Get a connection from the DataSource
+
             connection = dataSource.getConnection();
 
-            // Prepare the SQL query
             String query = "SELECT * FROM products WHERE product_name = ?";
             preparedStatement = connection.prepareStatement(query);
             preparedStatement.setString(1, productName);
 
-            // Execute the query
             resultSet = preparedStatement.executeQuery();
 
             if (resultSet.next()) {
-                // Map the result set to ProductDTO
+
                 return new ProductDTO(
                         resultSet.getInt("product_id"),
                         resultSet.getString("product_name"),
@@ -172,7 +170,7 @@ public class SearchProductServlet extends HttpServlet {
                 );
             }
         } finally {
-            // Close resources
+
             if (resultSet != null) resultSet.close();
             if (preparedStatement != null) preparedStatement.close();
             if (connection != null) connection.close();

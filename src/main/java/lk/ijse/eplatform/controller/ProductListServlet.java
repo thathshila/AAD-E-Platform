@@ -26,12 +26,11 @@ public class ProductListServlet extends HttpServlet {
         protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
             List<ProductDTO> productList = new ArrayList<>();
             try (Connection connection = dataSource.getConnection()) {
-                // Query to fetch products
+
                 String sql = "SELECT * FROM products";
                 PreparedStatement pst = connection.prepareStatement(sql);
                 ResultSet resultSet = pst.executeQuery();
 
-                // Populate the product list
                 while (resultSet.next()) {
                     ProductDTO product = new ProductDTO(
                            resultSet.getInt("product_id"),
@@ -46,10 +45,8 @@ public class ProductListServlet extends HttpServlet {
                     productList.add(product);
                 }
 
-                // Set products in request scope
                 request.setAttribute("productList", productList);
 
-                // Forward to JSP
                 request.getRequestDispatcher("product-list.jsp").forward(request, response);
 
             } catch (Exception e) {

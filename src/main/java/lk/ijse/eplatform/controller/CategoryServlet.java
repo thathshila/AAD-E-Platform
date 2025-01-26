@@ -27,7 +27,7 @@ public class CategoryServlet extends HttpServlet {
         String updateDescription = req.getParameter("update_description");
 
         if (name != null && description != null && categoryId == null) {
-            // Insert category
+
             try (Connection connection = dataSource.getConnection()) {
                 String sql = "INSERT INTO categories (category_name, description) VALUES (?, ?)";
                 try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
@@ -45,7 +45,7 @@ public class CategoryServlet extends HttpServlet {
                 resp.sendRedirect("category.jsp?error=Category not added");
             }
         } else if (categoryId != null && name == null && description == null) {
-            // Delete category
+
             try (Connection connection = dataSource.getConnection()) {
                 String sql = "DELETE FROM categories WHERE category_id=?";
                 try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
@@ -62,7 +62,7 @@ public class CategoryServlet extends HttpServlet {
                 resp.sendRedirect("category.jsp?error=Category not deleted");
             }
         } else if (updateId != null && updateName != null && updateDescription != null) {
-            // Update category
+
             try (Connection connection = dataSource.getConnection()) {
                 String sql = "UPDATE categories SET category_name=?, description=? WHERE category_id=?";
                 try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {

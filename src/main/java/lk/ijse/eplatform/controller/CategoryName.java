@@ -29,20 +29,17 @@ public class CategoryName extends HttpServlet {
              Statement stm = connection.createStatement();
              ResultSet rst = stm.executeQuery("SELECT category_id FROM categories")) {
 
-            // Fetch category IDs from the result set and add them to the list
             while (rst.next()) {
                 categoryIds.add(rst.getInt("category_id"));
             }
 
-            // Set the category IDs as a request attribute
             req.setAttribute("categoryIds", categoryIds);
 
-            // Forward the request to product-new.jsp
             RequestDispatcher requestDispatcher = req.getRequestDispatcher("product.jsp");
             requestDispatcher.forward(req, resp);
         } catch (SQLException e) {
             e.printStackTrace();
-            // Log error and redirect to an error page
+
             resp.sendRedirect("category-list.jsp?error=Failed to load categories");
         }
     }
