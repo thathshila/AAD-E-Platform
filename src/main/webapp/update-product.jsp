@@ -16,6 +16,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Search, Update, and Delete Product</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <style>
         body {
             background-color: #f8f9fa;
@@ -45,6 +46,16 @@
 <div class="container">
     <h1>Search, Update, and Delete Product</h1>
 
+<%
+    String message = request.getParameter("message");
+    String error = request.getParameter("error");
+%>
+
+<% if (message != null) { %>
+<div class="alert alert-success" role="alert"><%= message %></div>
+<% } else if (error != null) { %>
+<div class="alert alert-danger" role="alert"><%= error %></div>
+<% } %>
     <!-- Search Bar -->
     <form id="searchForm" class="mb-4">
         <div class="input-group">
@@ -117,6 +128,26 @@
         } else {
             alert('Please enter a product name!');
         }
+    });
+
+    document.addEventListener("DOMContentLoaded", () => {
+        <% if (message != null) { %>
+        Swal.fire({
+            icon: 'success',
+            title: 'Success',
+            text: '<%= message %>',
+            confirmButtonColor: '#3085d6',
+            confirmButtonText: 'OK'
+        });
+        <% } else if (error != null) { %>
+        Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: '<%= error %>',
+            confirmButtonColor: '#d33',
+            confirmButtonText: 'Try Again'
+        });
+        <% } %>
     });
 </script>
 </body>

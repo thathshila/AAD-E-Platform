@@ -67,7 +67,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="">
+                        <a class="nav-link" href="order-list">
                             <i class="bi bi-clipboard"></i> Orders
                         </a>
                     </li>

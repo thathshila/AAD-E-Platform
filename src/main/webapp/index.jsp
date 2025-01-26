@@ -116,7 +116,7 @@
 <div id="heroCarousel" class="carousel slide hero-carousel" data-bs-ride="carousel">
     <div class="carousel-inner">
         <div class="carousel-item active">
-            <img src="uploads/books.avif" class="d-block w-100 h-100" alt="Slide 1">
+            <img src="uploads/02.jpg" class="d-block w-100 h-100" alt="Slide 1">
             <div class="carousel-caption d-md-block">
                 <div class="search-container">
                     <div class="input-group">
@@ -130,7 +130,7 @@
             </div>
         </div>
         <div class="carousel-item">
-            <img src="uploads/02.jpg" class="d-block w-100 " alt="Slide 2">
+            <img src="uploads/books.avif" class="d-block w-100 " alt="Slide 2">
             <div class="carousel-caption d-md-block">
                 <div class="search-container">
                     <div class="input-group">

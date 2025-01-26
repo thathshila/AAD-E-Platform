@@ -172,10 +172,6 @@
 </footer>
 <script>
     document.addEventListener("DOMContentLoaded", () => {
-<%--        <%--%>
-<%--            String message = request.getParameter("message");--%>
-<%--            String error = request.getParameter("error");--%>
-<%--        %>--%>
         <% if (message != null) { %>
         Swal.fire({
             icon: 'success',
