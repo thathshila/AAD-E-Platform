@@ -63,7 +63,7 @@
 <!-- Navbar -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
     <div class="container">
-        <a class="navbar-brand" href="#">E-Shop</a>
+        <a class="navbar-brand" href="admin-login.jsp">E-Shop</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -78,9 +78,9 @@
                 <li class="nav-item">
                     <a class="nav-link" href="signin.jsp">Login</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="admin-login.jsp">Admin</a>
-                </li>
+<%--                <li class="nav-item">--%>
+<%--                    <a class="nav-link" href="admin-login.jsp">Admin</a>--%>
+<%--                </li>--%>
                 <li class="nav-item">
                     <a class="nav-link" href="add-cart.jsp">Cart <span class="badge bg-primary">0</span></a>
                 </li>
